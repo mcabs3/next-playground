@@ -23,4 +23,46 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  @apply leading-loose;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+p {
+  @apply text-lg leading-loose;
+  margin-bottom: 1rem;
+}
+
+pre {
+  @apply bg-neutral-800 text-neutral-50 p-4 rounded-lg overflow-x-auto my-8;
+}
+
+blockquote {
+  @apply border-l-4 border-blue-500 bg-blue-500/10 px-6 py-4 italic my-4 text-neutral-100;
+}
+
+blockquote[data-level="success"] {
+  @apply border-green-500 bg-green-500/10;
+}
+
+blockquote[data-level="warning"] {
+  @apply border-yellow-500 bg-yellow-500/10;
+}
+
+blockquote[data-level="severe"] {
+  @apply border-red-500 bg-red-500/10;
+}
+
+code {
+  @apply bg-neutral-200 text-neutral-800 px-2 py-1 rounded;
 }
