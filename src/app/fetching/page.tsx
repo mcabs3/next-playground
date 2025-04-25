@@ -1,7 +1,6 @@
 export default function Page() {
   return (
     <main>
-      <h1>Data Fetching</h1>
       <blockquote data-level="green">
         This page fetches no content and can be built as static
       </blockquote>

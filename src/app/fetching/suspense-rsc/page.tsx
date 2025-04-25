@@ -1,13 +1,13 @@
 import Link from "next/link";
 import DataComponent from "./_components/async-data-component";
 import DataLongerComponent from "./_components/async-data-longer-component";
+import { RenderSupportList } from "@/app/_components/render-support";
 
 export default function Page() {
   return (
     <div>
-      <h1>
-        <code>Suspense</code> + RSC
-      </h1>
+      <h2>Suspense + RSC</h2>
+      <RenderSupportList ssr isr ppr />
       <blockquote>
         This page fetches data and will be SSR, but is optimized for PPR.
       </blockquote>
@@ -26,9 +26,9 @@ export default function Page() {
         your application complete their computations and stream in upon
         completion.
       </blockquote>
-      <h2>Data (2 seconds)</h2>
+      <h3>Data (2 seconds)</h3>
       <DataComponent />
-      <h2>Data Longer (5 seconds)</h2>
+      <h3>Data Longer (5 seconds)</h3>
       <DataLongerComponent />
     </div>
   );

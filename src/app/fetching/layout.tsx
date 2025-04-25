@@ -5,6 +5,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <span className="font-mono text-neutral-600 tracking-tight">
           ~/fetching
         </span>
+        <h1>Fetching Patterns</h1>
       </header>
       {children}
     </div>

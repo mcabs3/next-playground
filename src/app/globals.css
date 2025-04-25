@@ -38,6 +38,12 @@ h2 {
   margin-bottom: 1rem;
 }
 
+h3 {
+  font-size: 1.75rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
 p {
   @apply text-lg leading-loose;
   margin-bottom: 1rem;
