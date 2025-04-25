@@ -49,6 +49,11 @@ p {
   margin-bottom: 1rem;
 }
 
+p > code,
+div > code {
+  @apply mx-1;
+}
+
 pre {
   @apply bg-neutral-800 text-neutral-50 p-4 rounded-lg overflow-x-auto my-8;
 }

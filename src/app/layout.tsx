@@ -39,6 +39,16 @@ const navigation = [
       },
     ],
   },
+  {
+    title: "Routing",
+    items: [
+      {
+        slug: "anything",
+        name: "Not Found",
+        description: "Creating your own not found page",
+      },
+    ],
+  },
 ] as const;
 
 export default function RootLayout({
