@@ -1,4 +1,4 @@
-import { CheckSquare as Check, XSquare } from "lucide-react";
+import { CheckSquare as Check, XSquare, Square } from "lucide-react";
 
 type RenderSupportType = boolean | "partial";
 
@@ -9,9 +9,9 @@ function SupportIcon({ status }: { status?: RenderSupportType }) {
     case false:
       return <XSquare className="w-4 text-red-500" />;
     case "partial":
-      return <XSquare className="w-4 text-yellow-500" />;
+      return <Check className="w-4 text-yellow-500" />;
     default:
-      return null;
+      return <Square className="w-4 text-neutral-500" />;
   }
 }
 
@@ -27,7 +27,7 @@ export function RenderSupportList({
   ppr?: RenderSupportType;
 }) {
   return (
-    <ul className="inline-flex gap-4 px-4 py-2 rounded text-sm items-center border border-neutral-800">
+    <ul className="inline-flex gap-4 px-4 py-2 rounded text-sm items-center border border-neutral-800 absolute top-0 right-0">
       <li className="flex gap-1 items-center">
         SSG <SupportIcon status={ssg} />
       </li>

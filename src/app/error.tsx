@@ -10,7 +10,7 @@ export default function ErrorPage({
   reset: () => void;
 }) {
   return (
-    <div>
+    <main className="pt-20 pb-10 px-8">
       <h2>Something went wrong!</h2>
       <p>
         This is an error boundary. This is the <code>src/app/error.tsx</code>{" "}
@@ -23,6 +23,6 @@ export default function ErrorPage({
         <button onClick={() => reset()}>Try again</button>
         <Link href="/">Go Home</Link>
       </div>
-    </div>
+    </main>
   );
 }

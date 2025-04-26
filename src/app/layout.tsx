@@ -70,10 +70,13 @@ export default function RootLayout({
               className="block px-2 py-0.5 -mx-2 text-neutral-300 hover:text-neutral-50 hover:bg-neutral-600 rounded"
               href="/"
             >
-              Root
+              Home
             </Link>
             {navigation.map((row) => (
-              <div key={row.title} className="flex flex-col gap-2">
+              <div
+                key={row.title}
+                className="flex flex-col gap-2 not-first:mt-4"
+              >
                 <span className="font-mono text-sm text-neutral-600 uppercase">
                   {row.title}
                 </span>
