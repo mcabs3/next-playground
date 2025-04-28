@@ -49,6 +49,7 @@ p {
 }
 
 p > code,
+span > code,
 div > code {
   @apply mx-1;
 }

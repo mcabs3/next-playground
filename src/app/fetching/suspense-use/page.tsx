@@ -2,6 +2,8 @@ import { getData, getDataLonger } from "@/lib/data";
 import DataComponent from "./_components/async-data-component";
 import { Suspense } from "react";
 import { RenderSupportList } from "@/app/_components/render-support";
+import { LoadingSkeleton } from "@/app/_components/loading-skeleton";
+import Loading from "@/app/loading";
 
 export default function Page() {
   const data = getData();
@@ -40,9 +42,9 @@ export default function Page() {
           <h3>Data (2 seconds)</h3>
           <Suspense
             fallback={
-              <div>
+              <LoadingSkeleton>
                 Loading <code>&lt;DataComponent /&gt;</code>
-              </div>
+              </LoadingSkeleton>
             }
           >
             <DataComponent dataPromise={data} />
@@ -52,9 +54,9 @@ export default function Page() {
           <h3>Data Longer (5 seconds)</h3>
           <Suspense
             fallback={
-              <div>
+              <LoadingSkeleton>
                 Loading <code>&lt;DataComponent /&gt;</code>
-              </div>
+              </LoadingSkeleton>
             }
           >
             <DataComponent dataPromise={dataLonger} />

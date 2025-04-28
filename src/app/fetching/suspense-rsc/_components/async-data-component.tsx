@@ -1,3 +1,4 @@
+import { LoadingSkeleton } from "@/app/_components/loading-skeleton";
 import { getData } from "@/lib/data";
 import { Suspense } from "react";
 
@@ -10,9 +11,9 @@ export default function DataComponent() {
   return (
     <Suspense
       fallback={
-        <div>
+        <LoadingSkeleton>
           Loading <code>&lt;DataComponent /&gt;</code>
-        </div>
+        </LoadingSkeleton>
       }
     >
       <AsyncDataComponent />

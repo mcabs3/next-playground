@@ -26,10 +26,19 @@ export default function Page() {
         your application complete their computations and stream in upon
         completion.
       </blockquote>
-      <h3>Data (2 seconds)</h3>
-      <DataComponent />
-      <h3>Data Longer (5 seconds)</h3>
-      <DataLongerComponent />
+      <section className="relative border border-neutral-800 py-10 px-4 mt-16 grid lg:grid-cols-2 gap-8">
+        <span className="px-4 rounded top-0 left-8 font-mono absolute inline-block bg-neutral-800 -translate-y-1/2">
+          Data
+        </span>
+        <div>
+          <h3>Data (2 seconds)</h3>
+          <DataComponent />
+        </div>
+        <div>
+          <h3>Data Longer (5 seconds)</h3>
+          <DataLongerComponent />
+        </div>
+      </section>
     </div>
   );
 }
