@@ -2,7 +2,6 @@ import Link from "next/link";
 import DataComponent from "./_components/async-data-component";
 import DataLongerComponent from "./_components/async-data-longer-component";
 import { RenderSupportList } from "@/app/_components/render-support";
-export const dynamic = "force-dynamic";
 export default function Page() {
   return (
     <div>

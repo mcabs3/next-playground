@@ -4,7 +4,6 @@ import { Suspense } from "react";
 import { RenderSupportList } from "@/app/_components/render-support";
 import { LoadingSkeleton } from "@/app/_components/loading-skeleton";
 
-export const dynamic = "force-dynamic";
 export default function Page() {
   const data = getData();
   const dataLonger = getDataLonger();
