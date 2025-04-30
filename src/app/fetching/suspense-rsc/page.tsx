@@ -8,10 +8,6 @@ export default function Page() {
     <div>
       <h2>Suspense + RSC</h2>
       <RenderSupportList ssr isr ppr />
-      <blockquote>
-        This page fetches data and will be SSR, but is optimized for PPR.
-      </blockquote>
-
       <p>
         Just like the concepts behind{" "}
         <Link href="/data-fetching/page-loading">Page with Loading.tsx</Link>.
