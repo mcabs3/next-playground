@@ -1,6 +1,7 @@
 import { RenderSupportList } from "@/app/_components/render-support";
 import { getData, getDataLonger } from "@/lib/data";
 
+export const dynamic = "force-dynamic";
 export default async function Page() {
   const data = await getData();
   const dataLonger = await getDataLonger();
