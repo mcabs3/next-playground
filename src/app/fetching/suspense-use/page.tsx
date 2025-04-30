@@ -1,5 +1,5 @@
 import { getData, getDataLonger } from "@/lib/data";
-import DataComponent from "./_components/async-data-component";
+import DataComponent from "./_components/data-component";
 import { Suspense } from "react";
 import { RenderSupportList } from "@/app/_components/render-support";
 import { LoadingSkeleton } from "@/app/_components/loading-skeleton";
@@ -38,7 +38,7 @@ export default function Page() {
           Data
         </span>
         <div>
-          <h3>Data (2 seconds)</h3>
+          <h3>Data</h3>
           <Suspense
             fallback={
               <LoadingSkeleton>
@@ -50,7 +50,7 @@ export default function Page() {
           </Suspense>
         </div>
         <div>
-          <h3>Data Longer (5 seconds)</h3>
+          <h3>More Data</h3>
           <Suspense
             fallback={
               <LoadingSkeleton>

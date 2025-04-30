@@ -1,3 +1,4 @@
+import { DataDisplay } from "@/app/_components/data-display";
 import { RenderSupportList } from "@/app/_components/render-support";
 import { getData, getDataLonger } from "@/lib/data";
 
@@ -26,11 +27,10 @@ export default async function Page() {
         that we have navigated. We still cannot show any of the page content
         until the page has fully fetched the data.
       </p>
-
-      <h3>Data (2 seconds)</h3>
-      <pre>{JSON.stringify(data, null, 2)}</pre>
-      <h3>Data Longer (5 seconds)</h3>
-      <pre>{JSON.stringify(dataLonger, null, 2)}</pre>
+      <section className="grid lg:grid-cols-2 gap-2">
+        <DataDisplay title="Data" data={data} />
+        <DataDisplay title="More Data" data={dataLonger} />
+      </section>
     </div>
   );
 }

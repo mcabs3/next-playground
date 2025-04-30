@@ -2,6 +2,7 @@ import Link from "next/link";
 import DataComponent from "./_components/async-data-component";
 import DataLongerComponent from "./_components/async-data-longer-component";
 import { RenderSupportList } from "@/app/_components/render-support";
+import { DataDisplay } from "@/app/_components/data-display";
 export default function Page() {
   return (
     <div>
