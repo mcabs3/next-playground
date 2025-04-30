@@ -27,11 +27,11 @@ export default function Page() {
           Data
         </span>
         <div>
-          <h3>Data (2 seconds)</h3>
+          <h3>Data</h3>
           <DataComponent />
         </div>
         <div>
-          <h3>Data Longer (5 seconds)</h3>
+          <h3>More Data</h3>
           <DataLongerComponent />
         </div>
       </section>
