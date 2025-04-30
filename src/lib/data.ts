@@ -1,15 +1,10 @@
-export async function getData() {
-  const timeout = 2000;
-  await new Promise((res) => setTimeout(res, timeout));
-
-  return {
-    id: Math.floor(Math.random() * 1000),
-    name: "John Doe",
-  };
+export async function getData(ms = 0) {
+  // biome-ignore lint/style/noNonNullAssertion: <explanation>
+  return await fetch(`${process.env.API_URL!}/api/test?ms=${ms}`).then(
+    (response) => response.json(),
+  );
 }
 
 export async function getDataLonger() {
-  const timeout = 5000;
-  await new Promise((res) => setTimeout(res, timeout));
-  return Math.floor(Math.random() * 1000);
+  return await getData(5000);
 }
