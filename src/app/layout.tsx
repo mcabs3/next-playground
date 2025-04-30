@@ -25,6 +25,11 @@ const navigation = [
     title: "Data Fetching",
     items: [
       {
+        slug: "fetching/page-default",
+        name: "Default",
+        description: "Using an app-wide suspense boundary",
+      },
+      {
         slug: "fetching/suspense-page",
         name: "Loading.tsx",
         description: "Creating a page-level suspense boundary",

@@ -6,20 +6,19 @@ export default async function Page() {
   const dataLonger = await getDataLonger();
   return (
     <div>
-      <h2>
-        Dynamic Page with a co-located <code>loading.tsx</code>
-      </h2>
+      <h2>Dynamic Page (Default)</h2>
       <RenderSupportList ssr isr ppr="partial" />
       <blockquote data-level="warning">
-        Partial prerendering will technically work. However, the page is async
-        and waiting for data, so the PPR "static shell" will be at this
-        page-level. The other downside is no content will be able to display
-        until the data is fetched.{" "}
+        Partial prerendering is supported, but because of the fetch at the page
+        level, it will block the rest of the content from being sent, negating
+        the benefits of PPR.
       </blockquote>
       <p>
-        This page is the Server Component that also fetches the data. This
-        relies on the <code>src/app/loading.tsx</code> component to provide a
-        Suspense boundary for the app as a whole (global loading state).
+        This page is the Server Component that also fetches the data. In the
+        same folder as this <code>page.tsx</code> is a <code>loading.tsx</code>.
+        This will show while the page RSC fetches the data. The good is that the
+        navigation is felt and immediate, but the downside is you cannot show
+        anything about the page until this content is fetched.
       </p>
       <p>
         The drawback is that there is some static content on this page (and
