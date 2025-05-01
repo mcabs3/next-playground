@@ -4,9 +4,10 @@ const nextConfig: NextConfig = {
   /* config options here */
   experimental: {
     ppr: true,
-    // dynamicIO: true,
-    // useCache: true,
+    dynamicIO: true,
+    useCache: true,
     clientSegmentCache: true,
+    viewTransition: true,
   },
 };
 
