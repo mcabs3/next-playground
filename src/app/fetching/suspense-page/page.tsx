@@ -8,7 +8,7 @@ export default async function Page() {
   return (
     <div>
       <h2>
-        Dynamic Page with a co-located <code>loading.tsx</code>
+        Fetching at the Page with a <code>loading.tsx</code>
       </h2>
       <RenderSupportList ssr isr ppr="partial" />
       <blockquote data-level="warning">

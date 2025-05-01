@@ -26,12 +26,12 @@ const navigation = [
     items: [
       {
         slug: "fetching/page-default",
-        name: "Default",
+        name: "Fetching on a Page",
         description: "Using an app-wide suspense boundary",
       },
       {
         slug: "fetching/suspense-page",
-        name: "Loading.tsx",
+        name: "using a Loading.tsx",
         description: "Creating a page-level suspense boundary",
       },
       {
@@ -69,9 +69,10 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <section className="fixed top-0 z-10 flex w-full flex-col border-b border-neutral-800 bg-black lg:bottom-0 lg:z-auto lg:w-72 lg:border-r lg:border-b-0">
-          <span className="pt-10 pb-4 px-4 font-black uppercase text-xl">
-            Patterns
-          </span>
+          <div className="pt-10 pb-4 px-4 font-black text-xl text-neutral-500">
+            <span className="text-white block font-normal">Next.js</span>{" "}
+            Concepts
+          </div>
           <nav className="flex flex-col gap-2 p-4 text-white">
             <Link
               className="block px-2 py-0.5 -mx-2 text-neutral-300 hover:text-neutral-50 hover:bg-neutral-600 rounded"
