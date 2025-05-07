@@ -47,6 +47,16 @@ const navigation = [
     ],
   },
   {
+    title: "Rendering",
+    items: [
+      {
+        slug: "rendering/isr",
+        name: "ISR",
+        description: "Increment Static Regeneration",
+      },
+    ],
+  },
+  {
     title: "Routing",
     items: [
       {
