@@ -5,8 +5,16 @@ export const dynamic = "force-static"; // Force dynamic rendering
 // OR
 // export async function generateStaticParams() { return [] }
 
-export default function Page() {
-  const currentTime = new Date().toLocaleTimeString();
+async function getCurrentTime(): Promise<string> {
+  return new Promise((res) => {
+    setTimeout(() => {
+      res(new Date().toLocaleTimeString());
+    }, 1000);
+  });
+}
+
+export default async function Page() {
+  const currentTime = await getCurrentTime();
   return (
     <main className="px-16 pt-20">
       <h1>ISR Page</h1>
