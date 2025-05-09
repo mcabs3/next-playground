@@ -1,3 +1,5 @@
+import { RSC } from "./_components/rsc";
+
 // See: https://nextjs.org/docs/app/api-reference/functions/generate-static-params#all-paths-at-runtime
 export const revalidate = 10; // Revalidate every 10 seconds
 // AND
@@ -22,6 +24,7 @@ export default async function Page() {
       <p>
         This page is statically generated with Incremental Static Regeneration.
       </p>
+      <RSC />
     </main>
   );
 }
