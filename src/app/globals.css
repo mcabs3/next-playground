@@ -48,9 +48,7 @@ p {
   margin-bottom: 1rem;
 }
 
-p > code,
-span > code,
-div > code {
+* > code {
   @apply mx-1;
 }
 

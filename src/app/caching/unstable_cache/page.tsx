@@ -2,7 +2,7 @@ import { revalidateTag, unstable_cache } from "next/cache";
 
 function generateCachedID(id: string) {
   return unstable_cache(
-    async () => Math.floor(Math.random() * 10000000000),
+    async () => `${id}_${Math.floor(Math.random() * 10000000000)}`,
     undefined,
     { tags: [`id:${id}`] },
   );
@@ -26,7 +26,20 @@ export default async function Page() {
         <code>unstable_cache</code> is a next-native way to cache the data
         returned from promises.
       </p>
-      <pre>{JSON.stringify({ fake_id: FAKE_ID, cacheId: id }, null, 2)}</pre>
+      <ul className="list-disc">
+        <li>
+          <code>fake_id</code> is a simulated id of an entity (record id, path
+          param, etc).
+        </li>
+        <li>
+          <code>cachedToken</code> is a random generated id that is stored in
+          cache and will not change until the tag <code>id:{FAKE_ID}</code> is
+          revalidated.
+        </li>
+      </ul>
+      <pre>
+        {JSON.stringify({ fake_id: FAKE_ID, cachedToken: id }, null, 2)}
+      </pre>
       <form>
         <button
           formAction={reset}
