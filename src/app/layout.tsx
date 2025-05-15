@@ -54,6 +54,11 @@ const navigation = [
         name: "ISR",
         description: "Increment Static Regeneration",
       },
+      {
+        slug: "rendering/with-dynamic-api",
+        name: "ISR (force-static)",
+        description: "Increment Static Regeneration",
+      },
     ],
   },
   {
