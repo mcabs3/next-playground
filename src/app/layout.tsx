@@ -62,6 +62,17 @@ const navigation = [
     ],
   },
   {
+    title: "Caching",
+    items: [
+      {
+        slug: "caching/unstable_cache",
+        name: "Unstable Cache",
+        description: "Data caching with unstable_cache",
+      },
+    ],
+  },
+
+  {
     title: "Routing",
     items: [
       {
