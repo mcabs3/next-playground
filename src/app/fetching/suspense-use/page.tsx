@@ -3,6 +3,7 @@ import DataComponent from "./_components/data-component";
 import { Suspense } from "react";
 import { RenderSupportList } from "@/app/_components/render-support";
 import { LoadingSkeleton } from "@/app/_components/loading-skeleton";
+import TitledSection from "@/app/_components/titled-section";
 
 export default function Page() {
   const data = getData();
@@ -33,10 +34,7 @@ export default function Page() {
           </li>
         </ul>
       </blockquote>
-      <section className="relative border border-neutral-800 py-10 px-4 mt-16 grid lg:grid-cols-2 gap-8">
-        <span className="px-4 rounded top-0 left-8 font-mono absolute inline-block bg-neutral-800 -translate-y-1/2">
-          Data
-        </span>
+      <TitledSection title="Data" className="mt-16 grid lg:grid-cols-2 gap-8">
         <div>
           <h3>Data</h3>
           <Suspense
@@ -61,7 +59,7 @@ export default function Page() {
             <DataComponent dataPromise={dataLonger} />
           </Suspense>
         </div>
-      </section>
+      </TitledSection>
     </main>
   );
 }

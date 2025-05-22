@@ -28,7 +28,7 @@ body {
 h1 {
   font-size: 2.5rem;
   font-weight: bold;
-  margin-bottom: 1rem;
+  @apply mb-8;
 }
 
 h2 {
@@ -53,11 +53,11 @@ p {
 }
 
 pre {
-  @apply bg-neutral-800 text-neutral-50 py-4 px-6 rounded-lg overflow-x-auto font-mono text-base tracking-widest;
+  @apply bg-black text-neutral-300 py-4 px-6 rounded-lg overflow-x-auto font-mono text-sm tracking-widest;
 }
 
 blockquote {
-  @apply border-l-4 border-blue-500 bg-blue-500/10 px-6 py-4 italic my-4 text-neutral-100;
+  @apply border-l-4 border-blue-500 bg-blue-500/10 px-6 py-4 italic my-8 text-neutral-100;
 }
 
 blockquote[data-level="success"] {
@@ -73,5 +73,5 @@ blockquote[data-level="severe"] {
 }
 
 code {
-  @apply bg-neutral-200 text-neutral-800 px-2 py-1 rounded;
+  @apply bg-neutral-300 text-neutral-800 px-2 py-1 rounded text-sm font-bold;
 }

@@ -50,14 +50,24 @@ const navigation = [
     title: "Rendering",
     items: [
       {
+        slug: "rendering/ssr",
+        name: "Dynamic (SSR)",
+        description: "Server-side rendering",
+      },
+      {
         slug: "rendering/isr",
         name: "ISR",
         description: "Increment Static Regeneration",
       },
       {
-        slug: "rendering/with-dynamic-api",
+        slug: "rendering/isr/force-static",
         name: "ISR (force-static)",
         description: "Increment Static Regeneration",
+      },
+      {
+        slug: "rendering/isr/generate-static-params/1",
+        name: "ISR (generateStaticParams)",
+        description: "Static Site Generation",
       },
     ],
   },

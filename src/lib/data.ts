@@ -8,3 +8,7 @@ export async function getData(ms = 0) {
 export async function getDataLonger() {
   return await getData(5000);
 }
+
+export async function getCurrentTime(): Promise<string> {
+  return new Date().toLocaleTimeString();
+}
