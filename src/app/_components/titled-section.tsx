@@ -15,7 +15,7 @@ export default function TitledSection({
     <section
       aria-labelledby={id}
       className={cn(
-        "relative border border-neutral-800  py-10 px-8 rounded mt-8",
+        "relative border border-neutral-800  py-10 px-8 rounded mt-8 bg-neutral-300/5",
         className,
       )}
     >

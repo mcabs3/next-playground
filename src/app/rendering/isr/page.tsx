@@ -9,7 +9,7 @@ export default async function Page() {
   const date = await getCurrentTime();
 
   return (
-    <TitledSection title="page.tsx" className="mt-10">
+    <TitledSection title="rendering/isr/page.tsx" className="mt-10">
       <p>This page was generated at: {date}</p>
       <PokemonDisplay getPokemonPromise={pokemon} />
     </TitledSection>
