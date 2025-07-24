@@ -1,4 +1,3 @@
-import { getCurrentTime } from "@/lib/data";
 import { cookies, headers } from "next/headers";
 
 export async function RSC() {

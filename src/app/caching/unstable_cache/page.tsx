@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import { revalidateTag, unstable_cache } from "next/cache";
 
 function generateCachedID(id: string) {
@@ -41,13 +42,9 @@ export default async function Page() {
         {JSON.stringify({ fake_id: FAKE_ID, cachedToken: id }, null, 2)}
       </pre>
       <form>
-        <button
-          formAction={reset}
-          type="submit"
-          className="border px-4 py-2 rounded"
-        >
+        <Button formAction={reset} type="submit">
           Revaliate Cache
-        </button>
+        </Button>
       </form>
     </main>
   );
