@@ -1,13 +1,36 @@
-import { cookies, headers } from "next/headers";
+import { cookies as getCookies, headers as getHeaders } from "next/headers";
 
 export async function RSC() {
-  const keys = (await headers()).keys();
-  const cooKeys = (await cookies()).getAll().map((c) => c.name);
+  const headers = await getHeaders();
+  const cookies = await getCookies();
+  const keys = [...headers.keys()].filter((key) => key !== "cookie");
+  const cooKeys = [...cookies.getAll().map((c) => c.name)];
   return (
-    <div className="">
-      <pre className="leading-loose">
-        {JSON.stringify({ headers: [...keys], cookies: cooKeys }, null, 2)}
-      </pre>
+    <div className="p-4">
+      <div>Request Information</div>
+      <span>Header Keys</span>
+      <ul className="flex flex-wrap gap-2">
+        {keys.map((key) => (
+          <li
+            key={key}
+            className="text-sm border border-neutral-600 px-2 py-1 rounded"
+          >
+            {key}: {headers.get(key)}
+          </li>
+        ))}
+      </ul>
+
+      <span className="mt-4 block">Cookie Keys</span>
+      <ul className="flex flex-wrap gap-2">
+        {cooKeys.map((key) => (
+          <li
+            key={key}
+            className="text-sm border border-neutral-600 px-2 rounded"
+          >
+            {key}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
