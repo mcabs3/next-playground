@@ -1,11 +1,11 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  cacheComponents: true,
+  typedRoutes: true,
   /* config options here */
   experimental: {
-    // ppr: true,
-    // clientSegmentCache: true,
-    // viewTransition: true,
+    viewTransition: true,
   },
   images: {
     remotePatterns: [
