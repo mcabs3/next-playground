@@ -15,7 +15,7 @@ export default async function Page() {
         from its render. This effectively negates the benefits of PPR for a
         page.
       </blockquote>
-      <p>This page is an asyc Server Component that fetches the data. </p>
+      <p>This page is an async Server Component that fetches the data. </p>
       <p>
         The drawback is here is there are two fetches that happen and each take
         time. The page be "blicked" and not render until both calls have

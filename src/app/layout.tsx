@@ -4,6 +4,7 @@ import "./globals.css";
 import Link from "next/link";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
+import { ComponentProps } from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,27 +21,33 @@ export const metadata: Metadata = {
   description: "A minimal Next.js for demonstrating concepts",
 };
 
-const navigation = [
+interface Item {
+  name: string;
+  slug: ComponentProps<typeof Link>["href"];
+  description: string;
+}
+
+const navigation: Array<{ title?: string; items: Array<Item> }> = [
   {
     title: "Data Fetching",
     items: [
       {
-        slug: "fetching/page-default",
+        slug: "/fetching/page-default",
         name: "Fetching on a Page",
         description: "Using an app-wide suspense boundary",
       },
       {
-        slug: "fetching/suspense-page",
+        slug: "/fetching/suspense-page",
         name: "using a Loading.tsx",
         description: "Creating a page-level suspense boundary",
       },
       {
-        slug: "fetching/suspense-rsc",
+        slug: "/fetching/suspense-rsc",
         name: "Suspense + RSC",
         description: "Using Suspense boundaries around Server Components",
       },
       {
-        slug: "fetching/suspense-use",
+        slug: "/fetching/suspense-use",
         name: "Suspense + use",
         description: "Using React 19 use() with Suspense",
       },
@@ -50,22 +57,32 @@ const navigation = [
     title: "Rendering",
     items: [
       {
-        slug: "rendering/ssr",
+        slug: "/rendering",
+        name: "Overview",
+        description: "Rendering strategies in Next.js",
+      },
+      {
+        slug: "/rendering/ssg",
+        name: "Static (SSG)",
+        description: "Static Site Generation",
+      },
+      {
+        slug: "/rendering/ssr",
         name: "Dynamic (SSR)",
         description: "Server-side rendering",
       },
       {
-        slug: "rendering/isr",
+        slug: "/rendering/isr",
         name: "ISR",
         description: "Increment Static Regeneration",
       },
       {
-        slug: "rendering/isr/force-static",
+        slug: "/rendering/isr/force-static",
         name: "ISR (force-static)",
         description: "Increment Static Regeneration",
       },
       {
-        slug: "rendering/isr/generate-static-params/1",
+        slug: "/rendering/isr/generate-static-params/1" as any,
         name: "ISR (generateStaticParams)",
         description: "Static Site Generation",
       },
@@ -75,7 +92,7 @@ const navigation = [
     title: "Caching",
     items: [
       {
-        slug: "caching/unstable_cache",
+        slug: "/caching/unstable_cache",
         name: "Unstable Cache",
         description: "Data caching with unstable_cache",
       },
@@ -86,7 +103,7 @@ const navigation = [
     title: "Routing",
     items: [
       {
-        slug: "anything",
+        slug: "/anything" as any,
         name: "Not Found",
         description: "Creating your own not found page",
       },
@@ -126,10 +143,10 @@ export default function RootLayout({
                 </span>
                 <ul className="grid">
                   {row.items.map((item) => (
-                    <li key={item.slug}>
+                    <li key={item.slug.toString()}>
                       <Link
                         className="block px-2 py-0.5 -mx-2 text-neutral-300 hover:text-neutral-50 hover:bg-neutral-600 rounded"
-                        href={`/${item.slug}`}
+                        href={item.slug}
                       >
                         {item.name}
                       </Link>

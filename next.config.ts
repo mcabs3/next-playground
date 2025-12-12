@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  cacheComponents: true,
+  cacheComponents: false,
   typedRoutes: true,
   /* config options here */
   experimental: {

@@ -15,7 +15,7 @@ export default async function Page() {
   async function reset() {
     "use server";
     console.log("reset");
-    revalidateTag(`id:${FAKE_ID}`);
+    revalidateTag(`id:${FAKE_ID}`, "max");
   }
   const getId = generateCachedID(FAKE_ID);
 
@@ -43,7 +43,7 @@ export default async function Page() {
       </pre>
       <form>
         <Button formAction={reset} type="submit">
-          Revaliate Cache
+          Revalidate Cache
         </Button>
       </form>
     </main>
