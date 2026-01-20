@@ -119,7 +119,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased dark`}
       >
         <section className="fixed top-0 z-10 flex w-full flex-col border-b border-neutral-800 bg-black lg:bottom-0 lg:z-auto lg:w-72 lg:border-r lg:border-b-0">
           <div className="pt-10 pb-4 px-4 font-black text-xl text-neutral-500">

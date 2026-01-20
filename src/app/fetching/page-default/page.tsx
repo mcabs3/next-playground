@@ -1,21 +1,47 @@
 import { DataDisplay } from "@/app/_components/data-display";
 import { RenderSupportList } from "@/app/_components/render-support";
+import { CodeBlock } from "@/components/code-block";
 import { getData, getDataLonger } from "@/lib/data";
+import { code } from "@streamdown/code";
 import Link from "next/link";
+import { Streamdown } from "streamdown";
 
 export default async function Page() {
   const data = await getData();
   const dataLonger = await getDataLonger();
   return (
     <div>
-      <h2>Fetching at the Page RSC</h2>
       <RenderSupportList ssr isr ppr="partial" />
-      <blockquote data-level="severe">
+
+      <h2>Fetching at the Page RSC</h2>
+
+      <blockquote data-level="warning">
         Partial prerendering is supported for this page. However, because the
         data fetching is at the page level, it will block the rest of the page
         from its render. This effectively negates the benefits of PPR for a
         page.
       </blockquote>
+
+      <CodeBlock>{`
+\`\`\`jsx
+export default async function Page({ params }: { params: any }) {
+  const data = await getData();
+  const dataLonger = await getDataLonger();
+
+  return (
+    <div>
+      {/* page content that uses data and dataLonger */}
+    </div>
+  );
+}
+\`\`\`
+`}</CodeBlock>
+
+      <section className="grid lg:grid-cols-2 gap-2 pb-8">
+        <DataDisplay title="Data" data={data} />
+        <DataDisplay title="More Data" data={dataLonger} />
+      </section>
+
       <p>
         It is common to use the <code>Page.tsx</code> as the entry point to
         fetch and compute all of the content for the page using RSC before
@@ -32,15 +58,21 @@ export default async function Page() {
         fetched.
       </p>
 
-      <p>To improve this, there are two options:</p>
-
       <blockquote data-level="info">
         <div className="not-italic font-bold text-lg pb-2">Key Takeaways</div>
-        <ul className="list-disc list-inside space-y-4 leading-normal">
+        <ul className="list-disc list-inside space-y-4">
           <li>
-            You can optimize promises with <code>Promise.all</code>, but{" "}
-            <b>boundary</b> blocking still applies. Your <code>Page</code>{" "}
-            cannot render until the promises resolve.
+            You can optimize your data fetching with utilities such as{" "}
+            <code>Promise.all</code>, but <b>boundary</b> blocking still
+            applies. Your <code>Page</code> cannot render until the promises
+            resolve. The recommended approach is to move data fetching to a
+            child RSC to move the <b>boundary</b> lower in the page tree.{" "}
+            <Link
+              className="underline hover:no-underline not-italic"
+              href="/fetching/suspense-rsc"
+            >
+              Learn more Suspense + RSC
+            </Link>
           </li>
 
           <li>
@@ -69,11 +101,6 @@ export default async function Page() {
           </li>
         </ul>
       </blockquote>
-
-      <section className="grid lg:grid-cols-2 gap-2">
-        <DataDisplay title="Data" data={data} />
-        <DataDisplay title="More Data" data={dataLonger} />
-      </section>
     </div>
   );
 }
