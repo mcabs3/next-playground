@@ -57,7 +57,11 @@ pre {
 }
 
 blockquote {
-  @apply border-l-4 border-blue-500 bg-blue-500/10 px-6 py-4 italic my-8 text-neutral-100;
+  @apply border-l-4 border-blue-500 bg-blue-500/10 px-6 py-8 italic my-8 text-neutral-100;
+}
+
+blockquote[data-level="info"] {
+  @apply border-white bg-white/10;
 }
 
 blockquote[data-level="success"] {
