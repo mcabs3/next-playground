@@ -31,7 +31,6 @@ export function RenderSupportList({
       <li className="flex gap-1 items-center">
         SSG <SupportIcon status={ssg} />
       </li>
-
       <li className="flex gap-1 items-center">
         SSR <SupportIcon status={ssr} />
       </li>

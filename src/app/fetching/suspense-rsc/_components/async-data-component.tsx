@@ -3,7 +3,7 @@ import { LoadingSkeleton } from "@/app/_components/loading-skeleton";
 import { getData } from "@/lib/data";
 import { Suspense } from "react";
 
-async function AsyncDataComponent() {
+async function Component() {
   const data = await getData();
   return <DataDisplay data={data} />;
 }
@@ -17,7 +17,7 @@ export default function DataComponent() {
         </LoadingSkeleton>
       }
     >
-      <AsyncDataComponent />
+      <Component />
     </Suspense>
   );
 }

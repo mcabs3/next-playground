@@ -2,7 +2,7 @@ import Link from "next/link";
 import DataComponent from "./_components/async-data-component";
 import DataLongerComponent from "./_components/async-data-longer-component";
 import { RenderSupportList } from "@/app/_components/render-support";
-import { DataDisplay } from "@/app/_components/data-display";
+
 export default function Page() {
   return (
     <div>
@@ -10,8 +10,8 @@ export default function Page() {
       <RenderSupportList ssr isr ppr />
       <p>
         Just like the concepts behind{" "}
-        <Link href="/data-fetching/page-loading">Page with Loading.tsx</Link>.
-        You can leverage React Server Components with <code>Suspense</code> to
+        <Link href="/fetching/page-default">Page with Loading.tsx</Link>. You
+        can leverage React Server Components with <code>Suspense</code> to
         provide component-level states to create non-blocking rendering. This
         allows the "static" parts of the page render, and allow the child RSC to
         fetch the data independently (still on the server).

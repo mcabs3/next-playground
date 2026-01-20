@@ -1,6 +1,7 @@
 import { DataDisplay } from "@/app/_components/data-display";
 import { RenderSupportList } from "@/app/_components/render-support";
 import { getData, getDataLonger } from "@/lib/data";
+import Link from "next/link";
 
 export default async function Page() {
   const data = await getData();
@@ -15,18 +16,58 @@ export default async function Page() {
         from its render. This effectively negates the benefits of PPR for a
         page.
       </blockquote>
-      <p>This page is an async Server Component that fetches the data. </p>
       <p>
-        The drawback is here is there are two fetches that happen and each take
-        time. The page be "blicked" and not render until both calls have
-        resolved. While we are able to get the root layout to render and see
-        that we have navigated, we still cannot show any of the page content
-        until data has been fully fetched.
+        It is common to use the <code>Page.tsx</code> as the entry point to
+        fetch and compute all of the content for the page using RSC before
+        rendering the page. This page is an <code>async</code> Server Component
+        that fetches two "dummy" pieces of data.
+      </p>
+      <p>
+        What is important to note is there is now an implied <b>boundary</b> at
+        the page-level because we must wait for the data to be fetched before
+        proceeding with the page. This means the page is entirely blocked from
+        displaying any content, which &quot;is not fast&quot;. While we are able
+        to get the root layout to render and see that we have navigated, we
+        still cannot show any of the page content until data has been fully
+        fetched.
       </p>
 
-      <blockquote>
-        You can leverage optimizations like <code>Promise.all</code> but the
-        blocking issue still applies.
+      <p>To improve this, there are two options:</p>
+
+      <blockquote data-level="info">
+        <div className="not-italic font-bold text-lg pb-2">Key Takeaways</div>
+        <ul className="list-disc list-inside space-y-4 leading-normal">
+          <li>
+            You can optimize promises with <code>Promise.all</code>, but{" "}
+            <b>boundary</b> blocking still applies. Your <code>Page</code>{" "}
+            cannot render until the promises resolve.
+          </li>
+
+          <li>
+            By default, the <code>Page</code> will appear to &quot;hang&quot; 👎
+            as it waits for the data to load. You should avoid this by
+            introducing a page-level <code>loading.tsx</code> to provide
+            immediate feedback to users while data is loading.{" "}
+            <Link
+              className="underline hover:no-underline not-italic"
+              href="/fetching/suspense-page"
+            >
+              Learn more about loading.tsx
+            </Link>
+          </li>
+
+          <li>
+            Using <code>params</code> in the <code>Page.tsx</code> requires the
+            page to be an async component. Instead it is preferred to pass the
+            params to child components that consume the params.{" "}
+            <Link
+              className="underline hover:no-underline not-italic"
+              href="/fetching/suspense-rsc"
+            >
+              Take a look at using params with Suspense + RSC
+            </Link>
+          </li>
+        </ul>
       </blockquote>
 
       <section className="grid lg:grid-cols-2 gap-2">
