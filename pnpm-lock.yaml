@@ -20,18 +20,12 @@ importers:
       clsx:
         specifier: latest
         version: 2.1.1
-      install:
-        specifier: ^0.13.0
-        version: 0.13.0
       lucide-react:
         specifier: latest
         version: 0.554.0(react@19.2.3)
       next:
         specifier: canary
         version: 16.1.1-canary.35(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
-      npm:
-        specifier: ^11.7.0
-        version: 11.7.0
       react:
         specifier: ^19.2.3
         version: 19.2.3
@@ -58,8 +52,8 @@ importers:
         specifier: ^19.2.3
         version: 19.2.3(@types/react@19.2.7)
       tailwindcss:
-        specifier: ^4.1.17
-        version: 4.1.17
+        specifier: ^4.1.18
+        version: 4.1.18
       typescript:
         specifier: ^5.9.3
         version: 5.9.3
@@ -599,10 +593,6 @@ packages:
   inline-style-parser@0.2.7:
     resolution: {integrity: sha512-Nb2ctOyNR8DqQoR0OwRG95uNWIC0C1lCgf5Naz5H6Ji72KZ8OcFZLz2P5sNgwlyoJ8Yif11oMuYs5pBQa86csA==}
 
-  install@0.13.0:
-    resolution: {integrity: sha512-zDml/jzr2PKU9I8J/xyZBQn8rPCAY//UOYNmR01XwNwyfhEWObo2SWfSl1+0tm1u6PhxLwDnfsT/6jB7OUxqFA==}
-    engines: {node: '>= 0.10'}
-
   is-alphabetical@2.0.1:
     resolution: {integrity: sha512-FWyyY60MeTNyeSRpkM2Iry0G9hpr7/9kD40mD/cGQEuilcZYS4okz8SN2Q6rLCJ8gbCt6fN+rC+6tMGS99LaxQ==}
 
@@ -870,78 +860,6 @@ packages:
       sass:
         optional: true
 
-  npm@11.7.0:
-    resolution: {integrity: sha512-wiCZpv/41bIobCoJ31NStIWKfAxxYyD1iYnWCtiyns8s5v3+l8y0HCP/sScuH6B5+GhIfda4HQKiqeGZwJWhFw==}
-    engines: {node: ^20.17.0 || >=22.9.0}
-    hasBin: true
-    bundledDependencies:
-      - '@isaacs/string-locale-compare'
-      - '@npmcli/arborist'
-      - '@npmcli/config'
-      - '@npmcli/fs'
-      - '@npmcli/map-workspaces'
-      - '@npmcli/metavuln-calculator'
-      - '@npmcli/package-json'
-      - '@npmcli/promise-spawn'
-      - '@npmcli/redact'
-      - '@npmcli/run-script'
-      - '@sigstore/tuf'
-      - abbrev
-      - archy
-      - cacache
-      - chalk
-      - ci-info
-      - cli-columns
-      - fastest-levenshtein
-      - fs-minipass
-      - glob
-      - graceful-fs
-      - hosted-git-info
-      - ini
-      - init-package-json
-      - is-cidr
-      - json-parse-even-better-errors
-      - libnpmaccess
-      - libnpmdiff
-      - libnpmexec
-      - libnpmfund
-      - libnpmorg
-      - libnpmpack
-      - libnpmpublish
-      - libnpmsearch
-      - libnpmteam
-      - libnpmversion
-      - make-fetch-happen
-      - minimatch
-      - minipass
-      - minipass-pipeline
-      - ms
-      - node-gyp
-      - nopt
-      - npm-audit-report
-      - npm-install-checks
-      - npm-package-arg
-      - npm-pick-manifest
-      - npm-profile
-      - npm-registry-fetch
-      - npm-user-validate
-      - p-map
-      - pacote
-      - parse-conflict-json
-      - proc-log
-      - qrcode-terminal
-      - read
-      - semver
-      - spdx-expression-parse
-      - ssri
-      - supports-color
-      - tar
-      - text-table
-      - tiny-relative-date
-      - treeverse
-      - validate-npm-package-name
-      - which
-
   oniguruma-parser@0.12.1:
     resolution: {integrity: sha512-8Unqkvk1RYc6yq2WBYRj4hdnsAxVze8i7iPfQr8e4uSP3tRv0rpZcbGUDvxfQQcdwHt/e9PrMvGCsa8OqG9X3w==}
 
@@ -1064,6 +982,9 @@ packages:
 
   tailwindcss@4.1.17:
     resolution: {integrity: sha512-j9Ee2YjuQqYT9bbRTfTZht9W/ytp5H+jJpZKiYdP/bpnXARAuELt9ofP0lPnmHjbga7SNQIxdTAXCmtKVYjN+Q==}
+
+  tailwindcss@4.1.18:
+    resolution: {integrity: sha512-4+Z+0yiYyEtUVCScyfHCxOYP06L5Ne+JiHhY2IjR2KWMIWhJOYZKLSGZaP5HkZ8+bY0cxfzwDE5uOmzFXyIwxw==}
 
   tapable@2.3.0:
     resolution: {integrity: sha512-g9ljZiwki/LfxmQADO3dEY1CbpmXT5Hm2fJ+QaGKwSXUylMybePR7/67YW7jOrrvjEgL1Fmz5kzyAjWVWLlucg==}
@@ -1583,8 +1504,6 @@ snapshots:
 
   inline-style-parser@0.2.7: {}
 
-  install@0.13.0: {}
-
   is-alphabetical@2.0.1: {}
 
   is-alphanumerical@2.0.1:
@@ -2035,8 +1954,6 @@ snapshots:
       - '@babel/core'
       - babel-plugin-macros
 
-  npm@11.7.0: {}
-
   oniguruma-parser@0.12.1: {}
 
   oniguruma-to-es@4.3.4:
@@ -2236,6 +2153,8 @@ snapshots:
   tailwind-merge@3.4.0: {}
 
   tailwindcss@4.1.17: {}
+
+  tailwindcss@4.1.18: {}
 
   tapable@2.3.0: {}
 

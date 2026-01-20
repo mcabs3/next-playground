@@ -13,10 +13,8 @@
     "@vercel/analytics": "latest",
     "@vercel/speed-insights": "latest",
     "clsx": "latest",
-    "install": "^0.13.0",
     "lucide-react": "latest",
     "next": "canary",
-    "npm": "^11.7.0",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "streamdown": "^2.1.0",
@@ -27,7 +25,7 @@
     "@types/node": "^22.19.1",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
-    "tailwindcss": "^4.1.17",
+    "tailwindcss": "^4.1.18",
     "typescript": "^5.9.3"
   }
 }
