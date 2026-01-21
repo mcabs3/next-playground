@@ -1,5 +1,4 @@
 import { DataDisplay } from "@/app/_components/data-display";
-import { RenderSupportList } from "@/app/_components/render-support";
 import { CodeBlock } from "@/components/code-block";
 import { getData, getDataLonger } from "@/lib/data";
 import { Metadata } from "next";

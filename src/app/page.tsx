@@ -9,7 +9,8 @@ export default function Home() {
       </blockquote>
       <TitledSection title="app/page.tsx">
         <p>
-          Welcome, this project is a collection of Next.js concepts and examples
+          This is a Next.js demo application created to showcase common patterns
+          with the features available in Next.js
         </p>
       </TitledSection>
     </main>

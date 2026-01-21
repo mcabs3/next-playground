@@ -23,14 +23,17 @@ export default function Page() {
         . You can leverage React Server Components with <code>Suspense</code> to
         provide component-level states to create non-blocking rendering. This
         allows the "static" parts of the page render, and allow the child RSC to
-        fetch the data independently (still on the server).
+        fetch the data independently (still on the server), all in a single http
+        request!
       </p>
+
       <blockquote data-level="success">
-        You see content immediately (the header, the paragraph, and THIS). This
-        means the user can see more of the experience while the dynamic parts of
-        your application complete their computations and stream in upon
-        completion.
+        You see content immediately (the header, the paragraph, and THIS
+        message). This means the user can see more of the experience while the
+        dynamic parts of your application complete their computations and stream
+        in upon completion.
       </blockquote>
+
       <section className="relative border border-neutral-800 py-10 px-8 mt-16 grid lg:grid-cols-2 gap-8">
         <span className="px-4 rounded top-0 left-8 font-mono absolute inline-block bg-neutral-800 -translate-y-1/2">
           Data

@@ -8,6 +8,7 @@ import { ComponentProps } from "react";
 import {
   Sidebar,
   SidebarContent,
+  SidebarHeader,
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
@@ -133,11 +134,13 @@ export default function RootLayout({
       >
         <SidebarProvider>
           <Sidebar>
+            <SidebarHeader>
+              <div className="pt-10 pb-4 px-4 font-black text-xl">
+                <span className="block font-normal">Next.js</span> Concepts
+              </div>
+            </SidebarHeader>
             <SidebarContent>
               <section className="flex w-full flex-col">
-                <div className="pt-10 pb-4 px-4 font-black text-xl">
-                  <span className="block font-normal">Next.js</span> Concepts
-                </div>
                 <nav className="flex flex-col gap-2 p-4">
                   <Link className="block px-2 py-0.5 -mx-2 rounded" href="/">
                     Home
@@ -147,7 +150,7 @@ export default function RootLayout({
                       key={row.title}
                       className="flex flex-col gap-2 not-first:mt-4"
                     >
-                      <span className="font-mono text-sm uppercase">
+                      <span className="font-mono text-xs uppercase">
                         {row.title}
                       </span>
                       <ul className="grid">
