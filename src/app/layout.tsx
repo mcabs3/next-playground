@@ -5,6 +5,12 @@ import Link from "next/link";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
 import { ComponentProps } from "react";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarProvider,
+  SidebarTrigger,
+} from "@/components/ui/sidebar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -125,37 +131,46 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased dark`}
       >
-        <section className="fixed top-0 z-10 flex w-full flex-col bg-background border-background lg:bottom-0 lg:z-auto lg:w-72 lg:border-r lg:border-b-0">
-          <div className="pt-10 pb-4 px-4 font-black text-xl">
-            <span className="block font-normal">Next.js</span> Concepts
-          </div>
-          <nav className="flex flex-col gap-2 p-4">
-            <Link className="block px-2 py-0.5 -mx-2 rounded" href="/">
-              Home
-            </Link>
-            {navigation.map((row) => (
-              <div
-                key={row.title}
-                className="flex flex-col gap-2 not-first:mt-4"
-              >
-                <span className="font-mono text-sm uppercase">{row.title}</span>
-                <ul className="grid">
-                  {row.items.map((item) => (
-                    <li key={item.slug.toString()}>
-                      <Link
-                        className="block px-2 py-0.5 -mx-2 rounded"
-                        href={item.slug}
-                      >
-                        {item.name}
-                      </Link>
-                    </li>
+        <SidebarProvider>
+          <Sidebar>
+            <SidebarContent>
+              <section className="flex w-full flex-col">
+                <div className="pt-10 pb-4 px-4 font-black text-xl">
+                  <span className="block font-normal">Next.js</span> Concepts
+                </div>
+                <nav className="flex flex-col gap-2 p-4">
+                  <Link className="block px-2 py-0.5 -mx-2 rounded" href="/">
+                    Home
+                  </Link>
+                  {navigation.map((row) => (
+                    <div
+                      key={row.title}
+                      className="flex flex-col gap-2 not-first:mt-4"
+                    >
+                      <span className="font-mono text-sm uppercase">
+                        {row.title}
+                      </span>
+                      <ul className="grid">
+                        {row.items.map((item) => (
+                          <li key={item.slug.toString()}>
+                            <Link
+                              className="block px-2 py-0.5 -mx-2 rounded"
+                              href={item.slug}
+                            >
+                              {item.name}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   ))}
-                </ul>
-              </div>
-            ))}
-          </nav>
-        </section>
-        <div className="lg:ml-72 md:max-w-5xl">{children}</div>
+                </nav>
+              </section>
+            </SidebarContent>
+          </Sidebar>
+          <section className="w-full">{children}</section>
+        </SidebarProvider>
+
         <Analytics />
         <SpeedInsights />
       </body>

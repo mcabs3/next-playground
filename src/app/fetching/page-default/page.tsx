@@ -14,8 +14,6 @@ export default async function Page(props: PageProps<"/fetching/page-default">) {
   const dataLonger = await getDataLonger();
   return (
     <main>
-      <RenderSupportList ssr isr ppr="partial" />
-
       <h2>Fetching at the Page RSC</h2>
 
       <blockquote data-level="severe">
@@ -25,8 +23,8 @@ export default async function Page(props: PageProps<"/fetching/page-default">) {
       <p>
         It is common to use the <code>Page.tsx</code> as the entry point to
         fetch and compute all of the content for the page using RSC before
-        rendering the page. This page is an <code>async</code> Server Component
-        that fetches two "dummy" pieces of data.
+        rendering the page. <em>This page is a Server Component</em> that
+        fetches two "dummy" pieces of data.
       </p>
 
       <CodeBlock className="my-8 font-mono">

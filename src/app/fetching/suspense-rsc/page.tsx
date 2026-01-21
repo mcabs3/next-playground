@@ -10,9 +10,8 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <div>
+    <main>
       <h2>Suspense + RSC ❤️</h2>
-      <RenderSupportList ssr isr ppr />
       <p>
         Just like the concepts behind{" "}
         <Link
@@ -45,6 +44,6 @@ export default function Page() {
           <DataLongerComponent />
         </div>
       </section>
-    </div>
+    </main>
   );
 }

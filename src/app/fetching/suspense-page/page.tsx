@@ -13,11 +13,10 @@ export default async function Page() {
   const data = await getData();
   const dataLonger = await getDataLonger();
   return (
-    <div>
+    <main>
       <h2>
         Suspense with <em className="text-[length:inherit]">loading.tsx</em>
       </h2>
-      <RenderSupportList ssr isr ppr="partial" />
 
       <p>
         This <code>Page.tsx</code> mimics the same behavior as{" "}
@@ -102,6 +101,6 @@ export default function Loading() {
         <DataDisplay title="Data" data={data} />
         <DataDisplay title="More Data" data={dataLonger} />
       </section>
-    </div>
+    </main>
   );
 }
