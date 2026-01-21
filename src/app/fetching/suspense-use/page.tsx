@@ -34,7 +34,7 @@ export default function Page() {
 					</li>
 				</ul>
 			</blockquote>
-			<TitledSection title="Data" className="mt-16 grid lg:grid-cols-2 gap-8">
+			<TitledSection title="Data" className="mt-16 grid gap-8 lg:grid-cols-2">
 				<div>
 					<h3>Data</h3>
 					<Suspense

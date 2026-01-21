@@ -10,7 +10,7 @@ export function ReferenceLink({
 	const details = NEXT_REFERENCES[reference];
 	if (!details)
 		return (
-			<span className="text-red font-black text-sm inline-block">
+			<span className="inline-block font-black text-red text-sm">
 				MISSING REFERENCE
 			</span>
 		);
@@ -19,7 +19,7 @@ export function ReferenceLink({
 			href={details.href}
 			target="_blank"
 			rel="noreferrer"
-			className="underline hover:no-underline underline-offset-4"
+			className="underline underline-offset-4 hover:no-underline"
 		>
 			{text || details.title}
 		</a>

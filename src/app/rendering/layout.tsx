@@ -12,7 +12,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 				{children}
 			</TitledSection>
 			<footer className="pt-10">
-				<span className="text-sm font-bold text-neutral-500 pb-4 inline-block uppercase">
+				<span className="inline-block pb-4 font-bold text-neutral-500 text-sm uppercase">
 					Resources
 				</span>
 				<ul>

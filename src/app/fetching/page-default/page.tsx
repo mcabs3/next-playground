@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { DataDisplay } from "@/app/_components/data-display";
-import { RenderSupportList } from "@/app/_components/render-support";
 import { CodeBlock } from "@/components/code-block";
 import { getData, getDataLonger } from "@/lib/data";
 
@@ -9,7 +8,9 @@ export const metadata: Metadata = {
 	title: "Fetching on the Page with RSC",
 };
 
-export default async function Page(props: PageProps<"/fetching/page-default">) {
+export default async function Page(
+	_props: PageProps<"/fetching/page-default">,
+) {
 	const data = await getData();
 	const dataLonger = await getDataLonger();
 	return (
@@ -58,14 +59,14 @@ export default async function Page({ params }: PageProps<"/fetching/page-default
 				its render. This effectively negates the benefits of PPR for this page.
 			</blockquote>
 
-			<section className="grid lg:grid-cols-2 gap-2 pb-8">
+			<section className="grid gap-2 pb-8 lg:grid-cols-2">
 				<DataDisplay title="Data" data={data} />
 				<DataDisplay title="Other Data" data={dataLonger} />
 			</section>
 
 			<blockquote>
-				<div className="not-italic font-bold text-lg pb-2">Key Takeaways</div>
-				<ul className="list-disc list-inside space-y-4 not-italic">
+				<div className="pb-2 font-bold text-lg not-italic">Key Takeaways</div>
+				<ul className="list-inside list-disc space-y-4 not-italic">
 					<li>
 						Good - You can optimize your data fetching with utilities such as{" "}
 						<code>Promise.all</code>, but <b>boundary</b> blocking still
@@ -73,7 +74,7 @@ export default async function Page({ params }: PageProps<"/fetching/page-default
 						resolve. The recommended approach is to move data fetching to a
 						child RSC to move the <b>boundary</b> lower in the page tree.{" "}
 						<Link
-							className="underline hover:no-underline not-italic"
+							className="not-italic underline hover:no-underline"
 							href="/fetching/suspense-rsc"
 						>
 							Learn more Suspense + RSC
@@ -86,7 +87,7 @@ export default async function Page({ params }: PageProps<"/fetching/page-default
 						avoid this by introducing a page-level <code>loading.tsx</code> to
 						provide immediate feedback to users while data is loading.{" "}
 						<Link
-							className="underline hover:no-underline not-italic"
+							className="not-italic underline hover:no-underline"
 							href="/fetching/suspense-page"
 						>
 							Learn more about loading.tsx
@@ -97,7 +98,7 @@ export default async function Page({ params }: PageProps<"/fetching/page-default
 						Best - Leveraging the RSC architecture, move the data fetching to
 						components lower in the tree.{" "}
 						<Link
-							className="underline hover:no-underline not-italic"
+							className="not-italic underline hover:no-underline"
 							href="/fetching/suspense-rsc"
 						>
 							Take a look at using params with Suspense + RSC

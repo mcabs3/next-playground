@@ -13,7 +13,7 @@ export async function RSC() {
 				{keys.map((key) => (
 					<li
 						key={key}
-						className="text-sm border border-neutral-600 px-2 py-1 rounded"
+						className="rounded border border-neutral-600 px-2 py-1 text-sm"
 					>
 						{key}: {headers.get(key)}
 					</li>
@@ -25,7 +25,7 @@ export async function RSC() {
 				{cooKeys.map((key) => (
 					<li
 						key={key}
-						className="text-sm border border-neutral-600 px-2 rounded"
+						className="rounded border border-neutral-600 px-2 text-sm"
 					>
 						{key}
 					</li>

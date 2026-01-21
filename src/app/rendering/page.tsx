@@ -16,7 +16,7 @@ export default function Page() {
 			</p>
 			<Table className="text-sm">
 				<TableHeader>
-					<TableRow className="before:bg-white/5 before:content-[''] before:absolute before:inset-0 before:rounded-md before:border before:border-white/10 relative">
+					<TableRow className="relative before:absolute before:inset-0 before:rounded-md before:border before:border-white/10 before:bg-white/5 before:content-['']">
 						<TableHead>SSG</TableHead>
 						<TableHead>SSR</TableHead>
 						<TableHead>ISR</TableHead>

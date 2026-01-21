@@ -10,7 +10,6 @@ import {
 	SidebarContent,
 	SidebarHeader,
 	SidebarProvider,
-	SidebarTrigger,
 } from "@/components/ui/sidebar";
 
 const geistSans = Geist({
@@ -93,6 +92,7 @@ const navigation: Array<{ title?: string; items: Array<Item> }> = [
 				description: "Increment Static Regeneration",
 			},
 			{
+				// biome-ignore lint/suspicious/noExplicitAny: for demo purposes
 				slug: "/rendering/isr/generate-static-params/1" as any,
 				name: "ISR (generateStaticParams)",
 				description: "Static Site Generation",
@@ -114,6 +114,7 @@ const navigation: Array<{ title?: string; items: Array<Item> }> = [
 		title: "Routing",
 		items: [
 			{
+				// biome-ignore lint/suspicious/noExplicitAny: for demo purposes
 				slug: "/anything" as any,
 				name: "Not Found",
 				description: "Creating your own not found page",
@@ -130,25 +131,25 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body
-				className={`${geistSans.variable} ${geistMono.variable} antialiased dark`}
+				className={`${geistSans.variable} ${geistMono.variable} dark antialiased`}
 			>
 				<SidebarProvider>
 					<Sidebar>
 						<SidebarHeader>
-							<div className="pt-10 pb-4 px-4 font-black text-xl">
+							<div className="px-4 pt-10 pb-4 font-black text-xl">
 								<span className="block font-normal">Next.js</span> Concepts
 							</div>
 						</SidebarHeader>
 						<SidebarContent>
 							<section className="flex w-full flex-col">
 								<nav className="flex flex-col gap-2 p-4">
-									<Link className="block px-2 py-0.5 -mx-2 rounded" href="/">
+									<Link className="-mx-2 block rounded px-2 py-0.5" href="/">
 										Home
 									</Link>
 									{navigation.map((row) => (
 										<div
 											key={row.title}
-											className="flex flex-col gap-2 not-first:mt-4"
+											className="not-first:mt-4 flex flex-col gap-2"
 										>
 											<span className="font-mono text-xs uppercase">
 												{row.title}
@@ -157,7 +158,7 @@ export default function RootLayout({
 												{row.items.map((item) => (
 													<li key={item.slug.toString()}>
 														<Link
-															className="block px-2 py-0.5 -mx-2 rounded"
+															className="-mx-2 block rounded px-2 py-0.5"
 															href={item.slug}
 														>
 															{item.name}

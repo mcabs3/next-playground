@@ -14,8 +14,8 @@ export default function Page() {
 						behavior in Next.js.
 					</p>
 
-					<h2 className="text-xl font-semibold mt-4">Key Benefits</h2>
-					<ul className="list-disc pl-6 space-y-1">
+					<h2 className="mt-4 font-semibold text-xl">Key Benefits</h2>
+					<ul className="list-disc space-y-1 pl-6">
 						<li>
 							<strong>Superior Performance</strong> - Faster Time to First Byte
 							(TTFB) and First Contentful Paint (FCP)
@@ -38,8 +38,8 @@ export default function Page() {
 						</li>
 					</ul>
 
-					<h2 className="text-xl font-semibold mt-4">Limitations</h2>
-					<ul className="list-disc pl-6 space-y-1">
+					<h2 className="mt-4 font-semibold text-xl">Limitations</h2>
+					<ul className="list-disc space-y-1 pl-6">
 						<li>
 							<strong>Content Freshness</strong> - Can become stale without
 							revalidation strategies
@@ -61,22 +61,22 @@ export default function Page() {
 						dynamic worlds.
 					</p>
 
-					<div className="mt-6 p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded-md">
-						<h3 className="text-lg font-semibold text-yellow-800">
+					<div className="mt-6 rounded-md border-yellow-400 border-l-4 bg-yellow-50 p-4">
+						<h3 className="font-semibold text-lg text-yellow-800">
 							Important Limitation
 						</h3>
 						<p className="text-yellow-700">
 							Static rendering is incompatible with Next.js Dynamic APIs. You
 							cannot use
-							<code className="mx-1 px-1 py-0.5 bg-yellow-100 rounded text-sm font-mono">
+							<code className="mx-1 rounded bg-yellow-100 px-1 py-0.5 font-mono text-sm">
 								cookies()
 							</code>
 							,
-							<code className="mx-1 px-1 py-0.5 bg-yellow-100 rounded text-sm font-mono">
+							<code className="mx-1 rounded bg-yellow-100 px-1 py-0.5 font-mono text-sm">
 								headers()
 							</code>
 							,
-							<code className="mx-1 px-1 py-0.5 bg-yellow-100 rounded text-sm font-mono">
+							<code className="mx-1 rounded bg-yellow-100 px-1 py-0.5 font-mono text-sm">
 								searchParams
 							</code>
 							, or other request-specific data in statically rendered pages.

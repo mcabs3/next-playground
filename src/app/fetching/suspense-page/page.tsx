@@ -14,7 +14,7 @@ export default async function Page() {
 	return (
 		<main>
 			<h2>
-				Suspense with <em className="text-[length:inherit]">loading.tsx</em>
+				Suspense with <em className="">loading.tsx</em>
 			</h2>
 
 			<p>
@@ -96,7 +96,7 @@ export default function Loading() {
 				.
 			</p>
 
-			<section className="grid lg:grid-cols-2 gap-2">
+			<section className="grid gap-2 lg:grid-cols-2">
 				<DataDisplay title="Data" data={data} />
 				<DataDisplay title="More Data" data={dataLonger} />
 			</section>

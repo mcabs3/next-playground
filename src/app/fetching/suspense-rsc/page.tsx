@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { RenderSupportList } from "@/app/_components/render-support";
 import DataComponent from "./_components/async-data-component";
 import DataLongerComponent from "./_components/async-data-longer-component";
 
@@ -16,7 +15,7 @@ export default function Page() {
 				Just like the concepts behind{" "}
 				<Link
 					href="/fetching/page-default"
-					className="hover:no-underline underline"
+					className="underline hover:no-underline"
 				>
 					Page with Loading.tsx
 				</Link>
@@ -34,8 +33,8 @@ export default function Page() {
 				in upon completion.
 			</blockquote>
 
-			<section className="relative border border-neutral-800 py-10 px-8 mt-16 grid lg:grid-cols-2 gap-8">
-				<span className="px-4 rounded top-0 left-8 font-mono absolute inline-block bg-neutral-800 -translate-y-1/2">
+			<section className="relative mt-16 grid gap-8 border border-neutral-800 px-8 py-10 lg:grid-cols-2">
+				<span className="absolute top-0 left-8 inline-block -translate-y-1/2 rounded bg-neutral-800 px-4 font-mono">
 					Data
 				</span>
 				<div>

@@ -15,9 +15,9 @@ export function PokemonDisplay({
 
 	return (
 		<div className="flex justify-center">
-			<div className="flex flex-col-reverse items-center border-4 border-[#FEC201] px-4 py-4 rounded-lg gap-8 bg-blue-900 shadow">
-				<p className="capitalize font-bold">{pokemon?.name}</p>
-				<div className="border-2 border-[#FEC201] rounded py-2 px-4 bg-neutral-900 shadow-sm">
+			<div className="flex flex-col-reverse items-center gap-8 rounded-lg border-4 border-[#FEC201] bg-blue-900 px-4 py-4 shadow">
+				<p className="font-bold capitalize">{pokemon?.name}</p>
+				<div className="rounded border-2 border-[#FEC201] bg-neutral-900 px-4 py-2 shadow-sm">
 					<Image
 						width={100}
 						height={100}

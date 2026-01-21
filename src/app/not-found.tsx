@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function NotFound() {
 	return (
-		<main className="pt-20 pb-10 px-8">
+		<main className="px-8 pt-20 pb-10">
 			<h1>Custom Not Found</h1>
 			<p>
 				This file lives at <code>src/app/not-found.tsx</code>

@@ -1,5 +1,5 @@
 "use client";
-import { type ReactNode, useEffect, useState } from "react";
+import type { ReactNode } from "react";
 
 // a function that generates 3 numbers that add up to 10 with a minimum of 1
 function useGeneratedRow(rowCount: number) {
@@ -33,18 +33,18 @@ export const LoadingSkeleton = ({
 	const rowContent = useGeneratedRow(rows);
 
 	return (
-		<div className=" relative grid place-items-center border-2 rounded border-dashed border-gray-500 p-8">
+		<div className="relative grid place-items-center rounded border-2 border-gray-500 border-dashed p-8">
 			{!!children && (
-				<div className="absolute left-1/2 top-1/2 -translate-1/2 z-10 text-base text-nowrap">
+				<div className="-translate-1/2 absolute top-1/2 left-1/2 z-10 text-nowrap text-base">
 					{children}
 				</div>
 			)}
-			<div className="grid grid-cols-10 w-full gap-2 [&>div]:rounded-lg">
+			<div className="grid w-full grid-cols-10 gap-2 [&>div]:rounded-lg">
 				{rowContent.map((rowData, i) =>
 					rowData.map((row, j) => (
 						<div
 							key={`${i}-${j}-${row}`}
-							className="h-8 bg-white/10 animate-pulse"
+							className="h-8 animate-pulse bg-white/10"
 							style={{ gridColumn: `span ${row} / span ${row}` }}
 						/>
 					)),

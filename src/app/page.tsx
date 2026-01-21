@@ -2,7 +2,7 @@ import TitledSection from "./_components/titled-section";
 
 export default function Home() {
 	return (
-		<main className="pt-20 pb-10 px-8">
+		<main className="px-8 pt-20 pb-10">
 			<h1>Next Concepts</h1>
 			<blockquote>
 				This page fetches no content and can be built as static

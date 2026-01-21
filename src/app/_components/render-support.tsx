@@ -27,17 +27,17 @@ export function RenderSupportList({
 	ppr?: RenderSupportType;
 }) {
 	return (
-		<ul className="inline-flex gap-4 px-4 py-2 rounded text-sm items-center border border-neutral-800 absolute top-0 right-0">
-			<li className="flex gap-1 items-center">
+		<ul className="absolute top-0 right-0 inline-flex items-center gap-4 rounded border border-neutral-800 px-4 py-2 text-sm">
+			<li className="flex items-center gap-1">
 				SSG <SupportIcon status={ssg} />
 			</li>
-			<li className="flex gap-1 items-center">
+			<li className="flex items-center gap-1">
 				SSR <SupportIcon status={ssr} />
 			</li>
-			<li className="flex gap-1 items-center">
+			<li className="flex items-center gap-1">
 				ISR <SupportIcon status={isr} />
 			</li>
-			<li className="flex gap-1 items-center">
+			<li className="flex items-center gap-1">
 				PPR <SupportIcon status={ppr} />
 			</li>
 		</ul>

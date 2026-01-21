@@ -20,7 +20,7 @@ export default async function Page() {
 		<main className="">
 			<h1>
 				Incremental Static Regeneration{" "}
-				<span className="block text-xl text-neutral-300">
+				<span className="block text-neutral-300 text-xl">
 					with Dynamic APIs
 				</span>
 			</h1>

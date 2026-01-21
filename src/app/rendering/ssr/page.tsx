@@ -20,8 +20,8 @@ export default function Page() {
 						opts the page into a SSR route.
 					</p>
 
-					<h2 className="text-xl font-semibold mt-4">Key Advantages</h2>
-					<ul className="list-disc pl-6 space-y-1">
+					<h2 className="mt-4 font-semibold text-xl">Key Advantages</h2>
+					<ul className="list-disc space-y-1 pl-6">
 						<li>
 							<strong>Real-time Data</strong> - Always displays the latest
 							information from your data sources
@@ -40,8 +40,8 @@ export default function Page() {
 						</li>
 					</ul>
 
-					<h2 className="text-xl font-semibold mt-4">Trade-offs</h2>
-					<ul className="list-disc pl-6 space-y-1">
+					<h2 className="mt-4 font-semibold text-xl">Trade-offs</h2>
+					<ul className="list-disc space-y-1 pl-6">
 						<li>
 							<strong>Performance</strong> - Slower Time to First Byte (TTFB)
 							compared to static rendering
