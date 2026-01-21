@@ -1,11 +1,15 @@
 "use client";
 
 import { code } from "@streamdown/code";
+import { ComponentProps } from "react";
 import { Streamdown } from "streamdown";
 
-export const CodeBlock = ({ children }: { children: string }) => {
+export const CodeBlock = ({
+  children,
+  ...props
+}: ComponentProps<typeof Streamdown>) => {
   return (
-    <Streamdown shikiTheme={["dracula", "dracula"]} plugins={{ code }}>
+    <Streamdown mode="static" plugins={{ code }} {...props}>
       {children}
     </Streamdown>
   );

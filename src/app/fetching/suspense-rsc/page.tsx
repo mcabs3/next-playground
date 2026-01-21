@@ -2,16 +2,26 @@ import Link from "next/link";
 import DataComponent from "./_components/async-data-component";
 import DataLongerComponent from "./_components/async-data-longer-component";
 import { RenderSupportList } from "@/app/_components/render-support";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Suspense with React Server Components",
+};
 
 export default function Page() {
   return (
     <div>
-      <h2>Suspense + RSC</h2>
+      <h2>Suspense + RSC ❤️</h2>
       <RenderSupportList ssr isr ppr />
       <p>
         Just like the concepts behind{" "}
-        <Link href="/fetching/page-default">Page with Loading.tsx</Link>. You
-        can leverage React Server Components with <code>Suspense</code> to
+        <Link
+          href="/fetching/page-default"
+          className="hover:no-underline underline"
+        >
+          Page with Loading.tsx
+        </Link>
+        . You can leverage React Server Components with <code>Suspense</code> to
         provide component-level states to create non-blocking rendering. This
         allows the "static" parts of the page render, and allow the child RSC to
         fetch the data independently (still on the server).
@@ -22,7 +32,7 @@ export default function Page() {
         your application complete their computations and stream in upon
         completion.
       </blockquote>
-      <section className="relative border border-neutral-800 py-10 px-4 mt-16 grid lg:grid-cols-2 gap-8">
+      <section className="relative border border-neutral-800 py-10 px-8 mt-16 grid lg:grid-cols-2 gap-8">
         <span className="px-4 rounded top-0 left-8 font-mono absolute inline-block bg-neutral-800 -translate-y-1/2">
           Data
         </span>

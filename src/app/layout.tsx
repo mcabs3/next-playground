@@ -17,8 +17,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Next.js Concepts",
-  description: "A minimal Next.js for demonstrating concepts",
+  title: {
+    template: "%s | Next.js Concepts",
+    default: "Next.js Concepts",
+  },
+
+  description: "A Next.js app for demonstrating patterns",
 };
 
 interface Item {
@@ -33,22 +37,22 @@ const navigation: Array<{ title?: string; items: Array<Item> }> = [
     items: [
       {
         slug: "/fetching/page-default",
-        name: "Fetching on a Page",
+        name: "1. Fetching on a Page",
         description: "Using an app-wide suspense boundary",
       },
       {
         slug: "/fetching/suspense-page",
-        name: "using a Loading.tsx",
+        name: "2. Suspense + Loading.tsx",
         description: "Creating a page-level suspense boundary",
       },
       {
         slug: "/fetching/suspense-rsc",
-        name: "Suspense + RSC",
+        name: "3. Suspense + RSC",
         description: "Using Suspense boundaries around Server Components",
       },
       {
         slug: "/fetching/suspense-use",
-        name: "Suspense + use",
+        name: "3a. Suspense + use",
         description: "Using React 19 use() with Suspense",
       },
     ],
@@ -121,16 +125,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased dark`}
       >
-        <section className="fixed top-0 z-10 flex w-full flex-col border-b border-neutral-800 bg-black lg:bottom-0 lg:z-auto lg:w-72 lg:border-r lg:border-b-0">
-          <div className="pt-10 pb-4 px-4 font-black text-xl text-neutral-500">
-            <span className="text-white block font-normal">Next.js</span>{" "}
-            Concepts
+        <section className="fixed top-0 z-10 flex w-full flex-col bg-background border-background lg:bottom-0 lg:z-auto lg:w-72 lg:border-r lg:border-b-0">
+          <div className="pt-10 pb-4 px-4 font-black text-xl">
+            <span className="block font-normal">Next.js</span> Concepts
           </div>
-          <nav className="flex flex-col gap-2 p-4 text-white">
-            <Link
-              className="block px-2 py-0.5 -mx-2 text-neutral-300 hover:text-neutral-50 hover:bg-neutral-600 rounded"
-              href="/"
-            >
+          <nav className="flex flex-col gap-2 p-4">
+            <Link className="block px-2 py-0.5 -mx-2 rounded" href="/">
               Home
             </Link>
             {navigation.map((row) => (
@@ -138,14 +138,12 @@ export default function RootLayout({
                 key={row.title}
                 className="flex flex-col gap-2 not-first:mt-4"
               >
-                <span className="font-mono text-sm text-neutral-600 uppercase">
-                  {row.title}
-                </span>
+                <span className="font-mono text-sm uppercase">{row.title}</span>
                 <ul className="grid">
                   {row.items.map((item) => (
                     <li key={item.slug.toString()}>
                       <Link
-                        className="block px-2 py-0.5 -mx-2 text-neutral-300 hover:text-neutral-50 hover:bg-neutral-600 rounded"
+                        className="block px-2 py-0.5 -mx-2 rounded"
                         href={item.slug}
                       >
                         {item.name}
@@ -157,7 +155,7 @@ export default function RootLayout({
             ))}
           </nav>
         </section>
-        <div className="lg:pl-72">{children}</div>
+        <div className="lg:ml-72 md:max-w-5xl">{children}</div>
         <Analytics />
         <SpeedInsights />
       </body>
