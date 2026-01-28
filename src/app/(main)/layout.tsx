@@ -158,7 +158,7 @@ export default function RootLayout({
 					</SidebarContent>
 				</Sidebar>
 				<section className="w-full">
-					<div className="w-full max-w-4xl">{children}</div>
+					<div className="mx-auto w-full max-w-5xl">{children}</div>
 				</section>
 			</SidebarProvider>
 
