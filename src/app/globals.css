@@ -29,8 +29,8 @@
 	--color-ring: var(--ring);
 	--color-input: var(--input);
 	--color-destructive: var(--destructive);
-	--color-accent-foreground: var(--color-yellow-300);
-	--color-accent: var(--color-yellow-500);
+	--color-accent-foreground: var(--color-blue-300);
+	--color-accent: var(--color-blue-600);
 	--color-secondary-foreground: var(--secondary-foreground);
 	--color-secondary: var(--secondary);
 	--color-popover-foreground: var(--popover-foreground);
@@ -63,8 +63,8 @@
 	--popover-foreground: oklch(0.145 0 0);
 	--secondary: oklch(0.97 0 0);
 	--secondary-foreground: oklch(0.205 0 0);
-	--accent: oklch(0.97 0 0);
-	--accent-foreground: oklch(0.205 0 0);
+	--accent: oklch(0.7 0.1643 248.82);
+	--accent-foreground: oklch(1 0 248.82);
 	--destructive: oklch(0.577 0.245 27.325);
 	--input: oklch(0.922 0 0);
 	--ring: oklch(0.708 0 0);
@@ -118,38 +118,29 @@
 }
 
 body {
-	@apply leading-loose text-lg;
+	@apply leading-loose;
 }
 
 h1 {
-	font-size: 2.5rem;
-	font-weight: bold;
-	@apply mb-8;
+	@apply mb-8 text-5xl font-bold;
 }
 
 h2 {
-	font-size: 2rem;
-	font-weight: bold;
+	@apply text-3xl font-bold;
 	margin-bottom: 1rem;
 }
 
 h3 {
-	font-size: 1.75rem;
+	@apply text-xl mb-2;
 	font-weight: bold;
-	margin-bottom: 1rem;
 }
 
 p {
-	@apply leading-loose;
-	margin-bottom: 1rem;
-}
-
-pre {
-	@apply bg-black text-neutral-300 py-4 px-6 rounded-lg overflow-x-auto font-mono text-sm tracking-widest;
+	@apply leading-loose my-4;
 }
 
 blockquote {
-	@apply inline-block border-l-4 border-blue-500 bg-blue-500/10 px-6 py-8 italic my-8 text-neutral-100;
+	@apply inline-block border-l-4 border-blue-500 bg-blue-500/10 px-6 py-6 my-4 text-sm;
 }
 
 blockquote[data-level="info"] {
@@ -157,15 +148,15 @@ blockquote[data-level="info"] {
 }
 
 blockquote[data-level="success"] {
-	@apply border-green-500 bg-green-500/10;
+	@apply border-green-500 bg-green-500/10 text-green-700;
 }
 
 blockquote[data-level="warning"] {
-	@apply border-yellow-500 bg-yellow-500/10;
+	@apply border-yellow-500 bg-yellow-500/10 text-yellow-700;
 }
 
 blockquote[data-level="severe"] {
-	@apply border-red-500 bg-red-500/10;
+	@apply border-red-500 bg-red-500/10 text-red-700;
 }
 
 p code {

@@ -1,23 +1,23 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { DataDisplay } from "@/app/_components/data-display";
+import { RenderSupportList } from "@/app/_components/render-support";
 import { CodeBlock } from "@/components/code-block";
-import { getData, getDataLonger } from "@/lib/data";
+import { Frame } from "@/components/frame";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export const metadata: Metadata = {
 	title: "Suspense with loading.tsx",
 };
 
-export default async function Page() {
-	const data = await getData();
-	const dataLonger = await getDataLonger();
+export default function Page() {
 	return (
 		<main>
+			<RenderSupportList ssr />
 			<h2>
 				Suspense with <em className="">loading.tsx</em>
 			</h2>
 
-			<p>
+			<p className="mt-6">
 				This <code>Page.tsx</code> mimics the same behavior as{" "}
 				<Link
 					className="underline hover:no-underline"
@@ -29,8 +29,16 @@ export default async function Page() {
 				directory as the page.
 			</p>
 
-			<CodeBlock className="my-8 font-mono">
-				{`\`\`\`typescript
+			<Frame src="/demos/fetching/suspense-page" />
+
+			<Tabs defaultValue="page" className="mt-8 rounded-lg bg-muted p-2">
+				<TabsList className="">
+					<TabsTrigger value="page">page.tsx</TabsTrigger>
+					<TabsTrigger value="loading">loading.tsx</TabsTrigger>
+				</TabsList>
+				<TabsContent value="page">
+					<CodeBlock>
+						{`\`\`\`tsx
 export default async function Page({ params }: PageProps<"/fetching/suspense-page">) {
   const [data, otherData] = await Promise.all([getData(), getDataLonger()]);
 
@@ -42,10 +50,11 @@ export default async function Page({ params }: PageProps<"/fetching/suspense-pag
 }
 \`\`\`
 `}
-			</CodeBlock>
-
-			<CodeBlock>
-				{`\`\`\`typescript
+					</CodeBlock>
+				</TabsContent>
+				<TabsContent value="loading">
+					<CodeBlock>
+						{`\`\`\`tsx
 import { LoadingSkeleton } from "@/app/_components/loading-skeleton";
         
 export default function Loading() {
@@ -58,20 +67,16 @@ export default function Loading() {
 }
 \`\`\`
 `}
-			</CodeBlock>
+					</CodeBlock>
+				</TabsContent>
+			</Tabs>
 
-			<blockquote data-level="warning">
-				Partial prerendering will technically work. However, since the data
-				fetching is at the page level, it will block the rest of the page from
-				its render. This effectively negates the benefits of PPR for this page.
-			</blockquote>
-
-			<p>
-				This page relies on <code>src/app/loading.tsx</code> to perform two
-				tasks. It will inject a <code>&lt;Suspense&gt;</code> boundary around
-				the page, and it will include the exported component as the{" "}
-				<em>fallback</em> to display while the inner component (the page) is
-				fetching its data.
+			<p className="">
+				This demo relies on a co-located (same level as the{" "}
+				<code>page.tsx</code>) <code>loading.tsx</code> to perform two tasks. It
+				will inject a <code>&lt;Suspense&gt;</code> boundary around the page,
+				and it will include the exported component as the <em>fallback</em> to
+				display while the inner component (the page) is fetching its data.
 			</p>
 
 			<p>
@@ -96,10 +101,11 @@ export default function Loading() {
 				.
 			</p>
 
-			<section className="grid gap-2 lg:grid-cols-2">
-				<DataDisplay title="Data" data={data} />
-				<DataDisplay title="More Data" data={dataLonger} />
-			</section>
+			<blockquote data-level="warning">
+				Partial prerendering will technically work. However, since the data
+				fetching is at the page level, it will block the rest of the page from
+				its render. This effectively negates the benefits of PPR for this page.
+			</blockquote>
 		</main>
 	);
 }

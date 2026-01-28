@@ -1,6 +1,3 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Link from "next/link";
@@ -11,16 +8,7 @@ import {
 	SidebarHeader,
 	SidebarProvider,
 } from "@/components/ui/sidebar";
-
-const geistSans = Geist({
-	variable: "--font-geist-sans",
-	subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-	variable: "--font-geist-mono",
-	subsets: ["latin"],
-});
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
 	title: {
@@ -129,12 +117,53 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en">
-			<body
-				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-			>
-				{children}
-			</body>
-		</html>
+		<>
+			<SidebarProvider>
+				<Sidebar>
+					<SidebarHeader>
+						<div className="px-2 pt-10 pb-4 font-black text-xl">
+							<span className="block font-normal">Next.js</span> Concepts
+						</div>
+					</SidebarHeader>
+					<SidebarContent>
+						<section className="flex w-full flex-col">
+							<nav className="flex flex-col gap-2 p-4">
+								<Link className="-mx-2 block rounded px-2 py-0.5" href="/">
+									Home
+								</Link>
+								{navigation.map((row) => (
+									<div
+										key={row.title}
+										className="not-first:mt-4 flex flex-col gap-2"
+									>
+										<span className="font-mono text-xs uppercase">
+											{row.title}
+										</span>
+										<ul className="grid">
+											{row.items.map((item) => (
+												<li key={item.slug.toString()}>
+													<Link
+														className="-mx-2 block rounded px-2 py-0.5"
+														href={item.slug}
+													>
+														{item.name}
+													</Link>
+												</li>
+											))}
+										</ul>
+									</div>
+								))}
+							</nav>
+						</section>
+					</SidebarContent>
+				</Sidebar>
+				<section className="w-full">
+					<div className="w-full max-w-4xl">{children}</div>
+				</section>
+			</SidebarProvider>
+
+			<Analytics />
+			<SpeedInsights />
+		</>
 	);
 }

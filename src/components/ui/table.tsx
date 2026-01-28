@@ -35,7 +35,7 @@ export function TableHeader({
 	className,
 	...props
 }: {
-	children: React.ReactNode;
+	children?: React.ReactNode;
 	className?: string;
 }) {
 	return (
@@ -50,7 +50,7 @@ export function TableRow({
 	className,
 	...props
 }: {
-	children: React.ReactNode;
+	children?: React.ReactNode;
 	className?: string;
 }) {
 	return (
@@ -65,7 +65,7 @@ export function TableCell({
 	className,
 	...props
 }: {
-	children: React.ReactNode;
+	children?: React.ReactNode;
 	className?: string;
 }) {
 	return (

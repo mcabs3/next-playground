@@ -1,5 +1,4 @@
-import { ReferenceLink } from "../_components/reference-link";
-import TitledSection from "../_components/titled-section";
+import { ReferenceLink } from "@/app/_components/reference-link";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
 	return (
@@ -7,10 +6,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 			<span className="font-mono text-neutral-600 tracking-tight">
 				~/rendering
 			</span>
-			<TitledSection title="rendering/layout.tsx">
-				<h2>Rendering Strategies</h2>
-				{children}
-			</TitledSection>
+			<h2>Rendering Strategies</h2>
+			{children}
 			<footer className="pt-10">
 				<span className="inline-block pb-4 font-bold text-neutral-500 text-sm uppercase">
 					Resources

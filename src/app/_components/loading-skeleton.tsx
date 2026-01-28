@@ -3,8 +3,6 @@ import type { ReactNode } from "react";
 
 // a function that generates 3 numbers that add up to 10 with a minimum of 1
 function useGeneratedRow(rowCount: number) {
-	// const [rows, setNumbers] = useState<number[][]>([]);
-	// useEffect(() => {
 	const results: number[][] = [];
 	for (let r = 0; r < rowCount; r++) {
 		let sum = 0;
@@ -17,9 +15,6 @@ function useGeneratedRow(rowCount: number) {
 		numbers.push(10 - sum);
 		results.push(numbers);
 	}
-	// setNumbers(results);
-	// }, [rowCount]);
-	// return rows;
 	return results;
 }
 

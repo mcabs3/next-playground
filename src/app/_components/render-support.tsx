@@ -27,7 +27,7 @@ export function RenderSupportList({
 	ppr?: RenderSupportType;
 }) {
 	return (
-		<ul className="absolute top-0 right-0 inline-flex items-center gap-4 rounded border border-neutral-800 px-4 py-2 text-sm">
+		<ul className="absolute top-0 right-0 inline-flex items-center gap-4 rounded-bl border-neutral-800 border-b border-l px-4 py-2 text-sm">
 			<li className="flex items-center gap-1">
 				SSG <SupportIcon status={ssg} />
 			</li>

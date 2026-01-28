@@ -1,4 +1,4 @@
-import { ReferenceLink } from "../_components/reference-link";
+import { ReferenceLink } from "@/app/_components/reference-link";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
 	return (
