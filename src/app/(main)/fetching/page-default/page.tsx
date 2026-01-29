@@ -6,37 +6,44 @@ import { CodeBlock } from "@/components/code-block";
 import { Frame } from "@/components/frame";
 
 export const metadata: Metadata = {
-	title: "Fetching on the Page with RSC",
+	title: "Fetching at the Page Level",
+	description:
+		"Learn about page-level data fetching in Next.js Server Components and why moving fetching lower in the tree improves performance.",
 };
 
-export default function Page(_props: PageProps<"/fetching/page-default">) {
+export default function Page() {
 	return (
 		<>
-			<PageHeader segment="~/fetching/default">
+			<PageHeader segment="~/fetching/page-default">
 				<Frame
 					src="/demos/fetching/page-default"
-					hint="Live demo of page level fetching"
+					hint="Notice the page hangs while fetching data"
 				/>
 			</PageHeader>
 
 			<PageContent>
-				<h1>Fetching at the Page RSC</h1>
+				<h1>Page-Level Data Fetching</h1>
 
 				<p>
-					It is common to use the <code>Page.tsx</code> as the entry point to
-					fetch and compute all of the content for the page using RSC before
-					rendering the page. <em>This page is a Server Component</em> that
-					fetches two "dummy" pieces of data.
+					A common pattern is fetching all data at the <code>page.tsx</code>{" "}
+					level before rendering. While simple, this creates an implicit{" "}
+					<strong>boundary</strong> that blocks the entire page until all data
+					is ready.
 				</p>
 
-				<CodeBlock className="my-8 font-mono">
-					{`\`\`\`typescript
-export default async function Page({ params }: PageProps<"/fetching/page-default">) {
-  const [data, otherData] = await Promise.all([getData(), getDataLonger()]);
+				<CodeBlock className="my-6">
+					{`\`\`\`tsx
+export default async function Page() {
+  // Page is blocked until both fetches complete
+  const [posts, user] = await Promise.all([
+    getPosts(),
+    getUser()
+  ]);
 
   return (
     <div>
-      {/* page content that uses data and otherData */}
+      <UserProfile user={user} />
+      <PostList posts={posts} />
     </div>
   );
 }
@@ -44,67 +51,95 @@ export default async function Page({ params }: PageProps<"/fetching/page-default
 `}
 				</CodeBlock>
 
+				<h2>The Problem</h2>
+
 				<p>
-					What is important to note is there is now an implied <b>boundary</b>{" "}
-					at the page-level because we must wait for the data to be fetched
-					before proceeding with the page. This means the page is entirely
-					blocked from displaying any content, which &quot;is not fast&quot;.
-					While we are able to get the root layout to render and see that we
-					have navigated, we still cannot show any of the page content until
-					data has been fully fetched.
+					When you fetch data at the page level, the entire page waits for all
+					promises to resolve. Users see nothing until everything is ready—even
+					if some content could render immediately.
 				</p>
 
 				<blockquote data-level="warning">
-					Partial prerendering will technically work. However, since the data
-					fetching is at the page level, it will block the rest of the page from
-					its render. This effectively negates the benefits of PPR for this
-					page.
+					<strong>Page appears to "hang"</strong>
+					<p className="mt-2">
+						Without a <code>loading.tsx</code> file, users see no feedback while
+						data fetches. The page appears frozen until all data arrives.
+					</p>
 				</blockquote>
 
-				<h2 className="mt-4 pb-2">Key Takeaways</h2>
-				<ul className="list-inside list-disc space-y-4 not-italic">
-					<li>
-						Good - You can optimize your data fetching with utilities such as{" "}
-						<code>Promise.all</code>, but <b>boundary</b> blocking still
-						applies. Your <code>Page</code> cannot render until the promises
-						resolve. The recommended approach is to move data fetching to a
-						child RSC to move the <b>boundary</b> lower in the page tree.{" "}
-						<Link
-							className="not-italic underline hover:no-underline"
-							href="/fetching/suspense-rsc"
-						>
-							Learn more Suspense + RSC
-						</Link>
-					</li>
+				<h2>Better Approaches</h2>
 
+				<ul className="list-disc space-y-2 pl-6">
 					<li>
-						Better - By default, the <code>Page</code> will appear to
-						&quot;hang&quot; 👎 as it waits for the data to load. You should
-						avoid this by introducing a page-level <code>loading.tsx</code> to
-						provide immediate feedback to users while data is loading.{" "}
+						<strong>Add loading.tsx</strong> - Provides immediate feedback with a
+						loading skeleton while the page fetches data.{" "}
 						<Link
-							className="not-italic underline hover:no-underline"
 							href="/fetching/suspense-page"
+							className="underline hover:no-underline"
 						>
-							Learn more about loading.tsx
+							Learn more
 						</Link>
 					</li>
-
 					<li>
-						Best - Leveraging the RSC architecture, move the data fetching to
-						components lower in the tree.{" "}
+						<strong>Move fetching to child components</strong> - Push data
+						fetching lower in the tree so static content renders immediately
+						while dynamic parts stream in.{" "}
 						<Link
-							className="not-italic underline hover:no-underline"
 							href="/fetching/suspense-rsc"
+							className="underline hover:no-underline"
 						>
-							Take a look at using params with Suspense + RSC
+							Learn more
 						</Link>
 					</li>
-
 					<li>
-						Keep in mind, using <code>params</code> in the <code>Page.tsx</code>{" "}
-						requires the page to be an async component. Instead it is preferred
-						to pass the params to child components that consume the params.
+						<strong>Use React.use() with Suspense</strong> - Start fetches early
+						in the page, but unwrap them in child components wrapped with
+						Suspense.{" "}
+						<Link
+							href="/fetching/suspense-use"
+							className="underline hover:no-underline"
+						>
+							Learn more
+						</Link>
+					</li>
+				</ul>
+
+				<h2>When Page-Level Fetching Is OK</h2>
+
+				<ul className="list-disc space-y-2 pl-6">
+					<li>
+						<strong>Simple pages with fast data</strong> - If your fetch is quick
+						(&lt;100ms), the blocking may be imperceptible.
+					</li>
+					<li>
+						<strong>All content depends on the same data</strong> - If nothing
+						can render without the data, there's no benefit to streaming.
+					</li>
+					<li>
+						<strong>Combined with loading.tsx</strong> - A loading state makes
+						the wait acceptable for users.
+					</li>
+				</ul>
+
+				<h2>Best Practices</h2>
+
+				<ul className="list-disc space-y-2 pl-6">
+					<li>
+						<strong>Always add loading.tsx</strong> - Never leave users with a
+						blank screen while fetching.
+					</li>
+					<li>
+						<strong>Use Promise.all for parallel fetches</strong> - Don't await
+						sequentially when fetches are independent.
+					</li>
+					<li>
+						<strong>Consider moving fetches down</strong> - If parts of your page
+						could render without the data, fetch in those specific components
+						instead.
+					</li>
+					<li>
+						<strong>Avoid passing params through the page</strong> - Let child
+						components access their own params to enable better streaming.
 					</li>
 				</ul>
 			</PageContent>

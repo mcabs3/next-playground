@@ -12,7 +12,7 @@ export default function Page() {
 	return (
 		<Main>
 			<h1>Static Header</h1>
-			<TitledSection title="Data" className="grid gap-8 grid-cols-2">
+			<TitledSection title="Data" className="grid grid-cols-2 gap-8">
 				<div>
 					<h3>Data</h3>
 					<DataComponent />
