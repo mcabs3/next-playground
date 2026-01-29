@@ -4,6 +4,7 @@ import { PageContent } from "@/app/_components/page-content";
 import { PageHeader } from "@/app/_components/page-header";
 import { CodeBlock } from "@/components/code-block";
 import { Frame } from "@/components/frame";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export const metadata: Metadata = {
 	title: "Fetching at the Page Level",
@@ -15,24 +16,20 @@ export default function Page() {
 	return (
 		<>
 			<PageHeader segment="~/fetching/page-default">
-				<Frame
-					src="/demos/fetching/page-default"
-					hint="Notice the page hangs while fetching data"
-				/>
-			</PageHeader>
-
-			<PageContent>
-				<h1>Page-Level Data Fetching</h1>
-
-				<p>
-					A common pattern is fetching all data at the <code>page.tsx</code>{" "}
-					level before rendering. While simple, this creates an implicit{" "}
-					<strong>boundary</strong> that blocks the entire page until all data
-					is ready.
-				</p>
-
-				<CodeBlock className="my-6">
-					{`\`\`\`tsx
+				<Tabs defaultValue="demo" className="mt-8 rounded-lg bg-muted p-2">
+					<TabsList>
+						<TabsTrigger value="demo">demo</TabsTrigger>
+						<TabsTrigger value="page">page.tsx</TabsTrigger>
+					</TabsList>
+					<TabsContent value="demo">
+						<Frame
+							src="/demos/fetching/page-default"
+							hint="Notice the page hangs while fetching data"
+						/>
+					</TabsContent>
+					<TabsContent value="page">
+						<CodeBlock>
+							{`\`\`\`tsx
 export default async function Page() {
   // Page is blocked until both fetches complete
   const [posts, user] = await Promise.all([
@@ -49,7 +46,20 @@ export default async function Page() {
 }
 \`\`\`
 `}
-				</CodeBlock>
+						</CodeBlock>
+					</TabsContent>
+				</Tabs>
+			</PageHeader>
+
+			<PageContent>
+				<h1>Page-Level Data Fetching</h1>
+
+				<p>
+					A common pattern is fetching all data at the <code>page.tsx</code>{" "}
+					level before rendering. While simple, this creates an implicit{" "}
+					<strong>boundary</strong> that blocks the entire page until all data
+					is ready.
+				</p>
 
 				<h2>The Problem</h2>
 
