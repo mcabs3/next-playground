@@ -1,5 +1,5 @@
 import { ReferenceLink } from "@/app/_components/reference-link";
-import { RSC } from "../../_components/rsc";
+import { RSC } from "../../fetching/_components/rsc";
 
 // Route override to revalidate the page every 10 seconds
 export const revalidate = 10;
