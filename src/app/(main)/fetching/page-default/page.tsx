@@ -13,10 +13,10 @@ export const metadata: Metadata = {
 export default function Page(_props: PageProps<"/fetching/page-default">) {
 	return (
 		<>
-			<PageHeader segment="~/fetching/suspense-rsc">
+			<PageHeader segment="~/fetching/default">
 				<RenderSupportList ssr isr="partial" />
 				<Frame
-					src="/demos/fetching/suspense-rsc"
+					src="/demos/fetching/page-default"
 					hint="Live demo of page level fetching"
 				/>
 			</PageHeader>
@@ -30,8 +30,6 @@ export default function Page(_props: PageProps<"/fetching/page-default">) {
 					rendering the page. <em>This page is a Server Component</em> that
 					fetches two "dummy" pieces of data.
 				</p>
-
-				<Frame src="/demos/fetching/page-default" />
 
 				<CodeBlock className="my-8 font-mono">
 					{`\`\`\`typescript

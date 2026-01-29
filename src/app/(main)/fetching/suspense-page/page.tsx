@@ -16,42 +16,18 @@ export default function Page() {
 		<>
 			<PageHeader segment="~/fetching/suspense-page">
 				<RenderSupportList ssr />
-				<Frame
-					src="/demos/fetching/suspense-page"
-					hint="Live demo of Suspense with loading.tsx"
-				/>
-			</PageHeader>
-
-			<PageContent>
-				<h1>
-					Suspense with <em className="">loading.tsx</em>
-				</h1>
-
-				<p className="mt-6">
-					This <code>Page.tsx</code> mimics the same behavior as{" "}
-					<Link
-						className="underline hover:no-underline"
-						href="/fetching/page-default"
-					>
-						Fetching on a Page
-					</Link>{" "}
-					with the inclusion of a <code>loading.tsx</code> file in the same
-					directory as the page.
-				</p>
-
-				<p className="">
-					This relies on a co-located (same level as the <code>page.tsx</code>){" "}
-					<code>loading.tsx</code> to perform two tasks. It will inject a{" "}
-					<code>&lt;Suspense&gt;</code> boundary around the page, and it will
-					include the exported component as the <em>fallback</em> to display
-					while the inner component (the page) is fetching its data.
-				</p>
-
-				<Tabs defaultValue="page" className="mt-8 rounded-lg bg-muted p-2">
+				<Tabs defaultValue="demo" className="mt-8 rounded-lg bg-muted p-2">
 					<TabsList className="">
+						<TabsTrigger value="demo">demo</TabsTrigger>
 						<TabsTrigger value="page">page.tsx</TabsTrigger>
 						<TabsTrigger value="loading">loading.tsx</TabsTrigger>
 					</TabsList>
+					<TabsContent value="demo">
+						<Frame
+							src="/demos/fetching/suspense-page"
+							hint="Live demo of Suspense with loading.tsx"
+						/>
+					</TabsContent>
 					<TabsContent value="page">
 						<CodeBlock>
 							{`\`\`\`tsx
@@ -86,6 +62,32 @@ export default function Loading() {
 						</CodeBlock>
 					</TabsContent>
 				</Tabs>
+			</PageHeader>
+
+			<PageContent>
+				<h1>
+					Suspense with <em className="">loading.tsx</em>
+				</h1>
+
+				<p className="mt-6">
+					This <code>Page.tsx</code> mimics the same behavior as{" "}
+					<Link
+						className="underline hover:no-underline"
+						href="/fetching/page-default"
+					>
+						Fetching on a Page
+					</Link>{" "}
+					with the inclusion of a <code>loading.tsx</code> file in the same
+					directory as the page.
+				</p>
+
+				<p className="">
+					This relies on a co-located (same level as the <code>page.tsx</code>){" "}
+					<code>loading.tsx</code> to perform two tasks. It will inject a{" "}
+					<code>&lt;Suspense&gt;</code> boundary around the page, and it will
+					include the exported component as the <em>fallback</em> to display
+					while the inner component (the page) is fetching its data.
+				</p>
 
 				<p>
 					The benefit is the users are given immediate feedback while the{" "}

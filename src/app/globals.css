@@ -118,26 +118,40 @@
 }
 
 body {
-	@apply leading-loose;
+	@apply leading-relaxed;
 }
 
 h1 {
-	@apply mb-8 text-5xl font-bold;
+	@apply text-4xl font-bold tracking-tight mb-6;
 }
 
 h2 {
-	@apply text-3xl font-bold;
-	margin-bottom: 1rem;
-	margin-top: 1rem;
+	@apply text-2xl font-semibold tracking-tight mt-10 mb-4;
 }
 
 h3 {
-	@apply text-xl mb-2;
-	font-weight: bold;
+	@apply text-xl font-semibold mt-8 mb-3;
+}
+
+h4 {
+	@apply text-lg font-medium mt-6 mb-2;
 }
 
 p {
-	@apply leading-loose my-4;
+	@apply leading-relaxed text-foreground/90 my-4;
+}
+
+p + p {
+	@apply mt-4;
+}
+
+ul,
+ol {
+	@apply my-4;
+}
+
+li {
+	@apply leading-relaxed;
 }
 
 blockquote {
