@@ -1,15 +1,26 @@
+import type { Metadata } from "next";
+import { PageContent } from "@/app/_components/page-content";
+import { PageHeader } from "@/app/_components/page-header";
 import { PokemonDisplay } from "@/app/_components/pokemon-display";
 import { ReferenceLink } from "@/app/_components/reference-link";
-import TitledSection from "@/app/_components/titled-section";
+import { RenderSupportList } from "@/app/_components/render-support";
 import { getPokemon, getRandomPokemonID } from "@/lib/pokemon";
 import { RSC } from "../_components/rsc";
+
+export const metadata: Metadata = {
+	title: "Dynamic (SSR) Rendering",
+};
 
 export default function Page() {
 	const id = getRandomPokemonID();
 	const pokemon = getPokemon(id);
 	return (
-		<main className="">
-			<TitledSection title="rendering/ssr/page.tsx" className="mt-10">
+		<>
+			<PageHeader segment="~/rendering/ssr">
+				<RenderSupportList ssr />
+			</PageHeader>
+
+			<PageContent>
 				<h1>Dynamic (SSR)</h1>
 				<div className="space-y-4">
 					<p className="mb-3">
@@ -68,7 +79,7 @@ export default function Page() {
 				<div className="mt-8">
 					<RSC />
 				</div>
-			</TitledSection>
-		</main>
+			</PageContent>
+		</>
 	);
 }

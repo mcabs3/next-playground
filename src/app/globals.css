@@ -128,6 +128,7 @@ h1 {
 h2 {
 	@apply text-3xl font-bold;
 	margin-bottom: 1rem;
+	margin-top: 1rem;
 }
 
 h3 {

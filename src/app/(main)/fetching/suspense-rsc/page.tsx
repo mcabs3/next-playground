@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { PageContent } from "@/app/_components/page-content";
 import { PageHeader } from "@/app/_components/page-header";
 import { RenderSupportList } from "@/app/_components/render-support";
 import { Frame } from "@/components/frame";
@@ -18,8 +19,9 @@ export default function Page() {
 					hint="Live demo of Suspense and RSC"
 				/>
 			</PageHeader>
-			<main className="mx-auto max-w-5xl px-8 py-12">
-				<h1>Suspense + RSC ❤️</h1>
+
+			<PageContent>
+				<h1>Suspense + Server Components</h1>
 				<p>
 					Moving the dynamic parts of your application lower in the "tree"
 					allows for faster delivery and better performance.
@@ -46,7 +48,7 @@ export default function Page() {
 					RSC to fetch the data independently (still on the server), all in a
 					single http request!
 				</p>
-			</main>
+			</PageContent>
 		</>
 	);
 }

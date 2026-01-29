@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import type { ComponentProps } from "react";
+import { PageContent } from "@/app/_components/page-content";
+import { PageHeader } from "@/app/_components/page-header";
 import { RenderSupportList } from "@/app/_components/render-support";
-import TitledSection from "@/app/_components/titled-section";
 import {
 	Table,
 	TableBody,
@@ -9,6 +12,7 @@ import {
 	TableHeader,
 	TableRow,
 } from "@/components/ui/table";
+import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
 	title: "Rendering Strategies in Next.js",
@@ -16,68 +20,75 @@ export const metadata: Metadata = {
 		"An overview of the different rendering strategies supported by Next.js including SSG, SSR, ISR, and PPR.",
 };
 
+function RenderingTile({
+	title,
+	href,
+	children,
+	className,
+	...props
+}: { title: string } & ComponentProps<typeof Link>) {
+	return (
+		<Link
+			aria-label={title}
+			className={cn(
+				"group block h-full rounded border p-4 transition-all hover:bg-muted",
+				className,
+			)}
+			href={href}
+			{...props}
+		>
+			<span className="inline-block text-xl group-hover:underline">
+				{title}
+			</span>
+			<div className="mt-2 leading-normal">{children}</div>
+		</Link>
+	);
+}
+
 export default function Page() {
 	return (
-		<main>
-			<RenderSupportList ssg />
-			<TitledSection title="rendering/page.tsx">
-				<p>
-					Next.js can support many times of rendering strategies to provide
-					flexibility of delivering your content
-				</p>
-				<ul>
+		<>
+			<PageHeader segment="~/rendering">
+				<RenderSupportList ssg />
+				<h1>Rendering Strategies</h1>
+			</PageHeader>
+			<PageContent>
+				<blockquote className="w-full">
+					Next.js supports multiple rendering strategies to provide flexibility
+					when delivering your content.
+				</blockquote>
+				<ul className="grid grid-cols-2 gap-4">
 					<li>
-						<h2>SSG - Static</h2>
+						<RenderingTile
+							title="Static Site Generation (SSG)"
+							href="/rendering/ssg"
+						>
+							Build-time generation of static HTML pages.
+						</RenderingTile>
 					</li>
 					<li>
-						<h2>SSR - Server-side Rendered</h2>
+						<RenderingTile
+							title="Server-side Rendering (SSR)"
+							href="/rendering/ssr"
+						>
+							Dynamic generation of pages on each request.
+						</RenderingTile>
 					</li>
 					<li>
-						<h2>ISR - Incremental Static Regeneration</h2>
+						<RenderingTile
+							title="Incremental Static Regeneration (ISR)"
+							href="/rendering/isr"
+						>
+							On-demand regeneration of static pages at runtime.
+						</RenderingTile>
 					</li>
 					<li>
-						<h2>PPR - Partial Pre-rendering</h2>
+						<RenderingTile title="Partial Prerendering (PPR)" href="/rendering">
+							Combining static and dynamic rendering within the same page.
+						</RenderingTile>
 					</li>
 				</ul>
-				<Table className="w-full text-sm">
-					<TableHeader>
-						<TableRow className="">
-							<TableHead>
-								<span className="sr-only">Topic</span>
-							</TableHead>
-							<TableHead>SSG</TableHead>
-							<TableHead>SSR</TableHead>
-							<TableHead>ISR</TableHead>
-							<TableHead>PPR</TableHead>
-						</TableRow>
-					</TableHeader>
-					<TableBody className="">
-						<TableRow>
-							<TableHead className="text-right">Creation</TableHead>
-							<TableCell>Build</TableCell>
-							<TableCell>Runtime</TableCell>
-							<TableCell>Runtime</TableCell>
-							<TableCell>Build/Runtime</TableCell>
-						</TableRow>
-						<TableRow>
-							<TableHead className="text-right">
-								Cookies/Headers Access
-							</TableHead>
-							<TableCell>No</TableCell>
-							<TableCell>Yes</TableCell>
-							<TableCell>Partial*</TableCell>
-							<TableCell>Yes</TableCell>
-						</TableRow>
-						<TableRow>
-							<TableHead className="text-right">Revalidation</TableHead>
-							<TableCell>No</TableCell>
-							<TableCell>Not applicable</TableCell>
-							<TableCell>Yes</TableCell>
-							<TableCell>Yes</TableCell>
-						</TableRow>
-					</TableBody>
-				</Table>
-			</TitledSection>
-		</main>
+			</PageContent>
+		</>
 	);
 }

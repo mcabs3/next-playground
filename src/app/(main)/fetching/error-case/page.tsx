@@ -1,4 +1,11 @@
+import type { Metadata } from "next";
+import { PageContent } from "@/app/_components/page-content";
+import { PageHeader } from "@/app/_components/page-header";
 import { RenderSupportList } from "@/app/_components/render-support";
+
+export const metadata: Metadata = {
+	title: "Error Case",
+};
 
 export default async function Page({
 	searchParams,
@@ -10,13 +17,18 @@ export default async function Page({
 		throw new Error("this error happened on the server");
 	}
 	return (
-		<main>
-			<RenderSupportList ssr />
-			<h1>Error Case</h1>
-			<blockquote>
-				If you add a <code>?error=1</code> then this page will error and trigger
-				the error boundary.
-			</blockquote>
-		</main>
+		<>
+			<PageHeader segment="~/fetching/error-case">
+				<RenderSupportList ssr />
+			</PageHeader>
+
+			<PageContent>
+				<h1>Error Case</h1>
+				<blockquote>
+					If you add a <code>?error=1</code> then this page will error and
+					trigger the error boundary.
+				</blockquote>
+			</PageContent>
+		</>
 	);
 }
