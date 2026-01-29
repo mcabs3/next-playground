@@ -7,8 +7,8 @@ export async function RSC() {
 	const cooKeys = [...cookies.getAll().map((c) => c.name)];
 	return (
 		<div className="p-4">
-			<div>Request Information</div>
-			<span>Header Keys</span>
+			<h3>Request Information</h3>
+			<b>Header Keys</b>
 			<ul className="flex flex-wrap gap-2">
 				{keys.map((key) => (
 					<li
@@ -20,7 +20,7 @@ export async function RSC() {
 				))}
 			</ul>
 
-			<span className="mt-4 block">Cookie Keys</span>
+			<b className="mt-4 block">Cookie Keys</b>
 			<ul className="flex flex-wrap gap-2">
 				{cooKeys.map((key) => (
 					<li

@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageContent } from "@/app/_components/page-content";
 import { PageHeader } from "@/app/_components/page-header";
-import { RenderSupportList } from "@/app/_components/render-support";
 import { CodeBlock } from "@/components/code-block";
 import { Frame } from "@/components/frame";
 
@@ -16,7 +15,6 @@ export default function Page() {
 	return (
 		<>
 			<PageHeader segment="~/rendering/ssg">
-				<RenderSupportList ssg />
 				<Frame
 					src="/demos/ssg"
 					hint="This page was pre-rendered at build time"

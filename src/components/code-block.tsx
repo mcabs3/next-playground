@@ -1,6 +1,7 @@
 "use client";
 
 import { code } from "@streamdown/code";
+import { mermaid } from "@streamdown/mermaid";
 import type { ComponentProps } from "react";
 import { Streamdown } from "streamdown";
 import { cn } from "@/lib/utils";
@@ -15,7 +16,7 @@ export const CodeBlock = ({
 			mode="static"
 			className={cn(className, "rounded-xl bg-background")}
 			controls={false}
-			plugins={{ code }}
+			plugins={{ code, mermaid }}
 			{...props}
 		>
 			{children}

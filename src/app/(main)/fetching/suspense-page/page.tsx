@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageContent } from "@/app/_components/page-content";
 import { PageHeader } from "@/app/_components/page-header";
-import { RenderSupportList } from "@/app/_components/render-support";
 import { CodeBlock } from "@/components/code-block";
 import { Frame } from "@/components/frame";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -15,7 +14,6 @@ export default function Page() {
 	return (
 		<>
 			<PageHeader segment="~/fetching/suspense-page">
-				<RenderSupportList ssr />
 				<Tabs defaultValue="demo" className="mt-8 rounded-lg bg-muted p-2">
 					<TabsList className="">
 						<TabsTrigger value="demo">demo</TabsTrigger>

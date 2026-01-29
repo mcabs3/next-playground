@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { PageContent } from "@/app/_components/page-content";
 import { PageHeader } from "@/app/_components/page-header";
 import { ReferenceLink } from "@/app/_components/reference-link";
-import { RenderSupportList } from "@/app/_components/render-support";
 import { RSC } from "../../_components/rsc";
 
 // Route override to revalidate the page every 10 seconds
@@ -26,9 +25,7 @@ export default async function Page() {
 	const currentTime = await getCurrentTime();
 	return (
 		<>
-			<PageHeader segment="~/rendering/isr/with-dynamic-api">
-				<RenderSupportList isr />
-			</PageHeader>
+			<PageHeader segment="~/rendering/isr/with-dynamic-api" />
 
 			<PageContent>
 				<h1>

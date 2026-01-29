@@ -12,8 +12,8 @@ export default async function Page() {
 	const currentTime = await getCurrentTime();
 	return (
 		<Main>
-			<h2>force-static</h2>
-			<blockquote>
+			<h1>force-static</h1>
+			<blockquote className="w-full">
 				<p>This page will revalidate every 10 seconds</p>
 				<i>Timestamp: {currentTime}</i>
 			</blockquote>

@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { RenderSupportList } from "@/app/_components/render-support";
+import { PageContent } from "@/app/_components/page-content";
+import { PageHeader } from "@/app/_components/page-header";
 import { CodeBlock } from "@/components/code-block";
 import { Frame } from "@/components/frame";
-import { PageHeader } from "@/app/_components/page-header";
-import { PageContent } from "@/app/_components/page-content";
 
 export const metadata: Metadata = {
 	title: "Fetching on the Page with RSC",
@@ -14,7 +13,6 @@ export default function Page(_props: PageProps<"/fetching/page-default">) {
 	return (
 		<>
 			<PageHeader segment="~/fetching/default">
-				<RenderSupportList ssr isr="partial" />
 				<Frame
 					src="/demos/fetching/page-default"
 					hint="Live demo of page level fetching"

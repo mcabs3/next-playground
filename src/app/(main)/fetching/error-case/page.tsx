@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { PageContent } from "@/app/_components/page-content";
 import { PageHeader } from "@/app/_components/page-header";
-import { RenderSupportList } from "@/app/_components/render-support";
 
 export const metadata: Metadata = {
 	title: "Error Case",
@@ -18,9 +17,7 @@ export default async function Page({
 	}
 	return (
 		<>
-			<PageHeader segment="~/fetching/error-case">
-				<RenderSupportList ssr />
-			</PageHeader>
+			<PageHeader segment="~/fetching/error-case" />
 
 			<PageContent>
 				<h1>Error Case</h1>

@@ -20,6 +20,7 @@
 		"@radix-ui/react-tabs": "^1.1.13",
 		"@radix-ui/react-tooltip": "^1.2.8",
 		"@streamdown/code": "^1.0.1",
+		"@streamdown/mermaid": "^1.0.1",
 		"@vercel/analytics": "latest",
 		"@vercel/speed-insights": "latest",
 		"class-variance-authority": "^0.7.1",

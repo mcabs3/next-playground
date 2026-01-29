@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageContent } from "@/app/_components/page-content";
 import { PageHeader } from "@/app/_components/page-header";
-import { RenderSupportList } from "@/app/_components/render-support";
 import { CodeBlock } from "@/components/code-block";
 import { Frame } from "@/components/frame";
 
@@ -16,7 +15,6 @@ export default function Page() {
 	return (
 		<>
 			<PageHeader segment="~/rendering/ssr">
-				<RenderSupportList ssr />
 				<Frame
 					src="/demos/ssr"
 					hint="This page renders fresh content on every request"
@@ -126,7 +124,7 @@ export default async function Page({
 					</li>
 				</ul>
 
-				<blockquote data-level="info">
+				<blockquote>
 					<strong>Streaming with SSR</strong>
 					<p className="mt-2">
 						Combine SSR with <code>Suspense</code> to stream content

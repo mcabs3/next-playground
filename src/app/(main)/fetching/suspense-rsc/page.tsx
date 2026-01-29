@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageContent } from "@/app/_components/page-content";
 import { PageHeader } from "@/app/_components/page-header";
-import { RenderSupportList } from "@/app/_components/render-support";
 import { Frame } from "@/components/frame";
 
 export const metadata: Metadata = {
@@ -13,7 +12,6 @@ export default function Page() {
 	return (
 		<>
 			<PageHeader segment="~/fetching/suspense-rsc">
-				<RenderSupportList ssr isr="partial" ppr />
 				<Frame
 					src="/demos/fetching/suspense-rsc"
 					hint="Live demo of Suspense and RSC"
