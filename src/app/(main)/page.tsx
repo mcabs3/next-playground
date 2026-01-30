@@ -1,23 +1,20 @@
-import TitledSection from "@/app/_components/titled-section";
-import { Browser } from "@/components/browser";
+import { Frame } from "@/components/frame";
+import { PageContent } from "../_components/page-content";
+import { PageHeader } from "../_components/page-header";
 
 export default function Home() {
 	return (
-		<main className="px-8 pt-20 pb-10">
-			<h1>Next Concepts</h1>
-			<blockquote>
-				This page fetches no content and can be built as static
-			</blockquote>
-			<TitledSection title="app/page.tsx">
-				<Browser>
-					<div className="px-4 pt-4">
-						<p>
-							This is a Next.js demo application created to showcase common
-							patterns with the features available in Next.js
-						</p>
-					</div>
-				</Browser>
-			</TitledSection>
-		</main>
+		<>
+			<PageHeader segment="~/">
+				<Frame src="/demos" hint="mini demos will appear here" />
+			</PageHeader>
+			<PageContent>
+				<h1>Next Concepts</h1>
+				<p>
+					This is a Next.js demo application created to showcase common patterns
+					with the features available in Next.js
+				</p>
+			</PageContent>
+		</>
 	);
 }
