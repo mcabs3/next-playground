@@ -31,22 +31,22 @@ const navigation: Array<{ title?: string; items: Array<Item> }> = [
 		items: [
 			{
 				slug: "/fetching/page-default",
-				name: "1. Fetching on a Page",
+				name: "Fetching on a Page",
 				description: "Using an app-wide suspense boundary",
 			},
 			{
 				slug: "/fetching/suspense-page",
-				name: "2. Suspense + Loading.tsx",
+				name: "Suspense + Loading.tsx",
 				description: "Creating a page-level suspense boundary",
 			},
 			{
 				slug: "/fetching/suspense-rsc",
-				name: "3. Suspense + RSC",
+				name: "Suspense + RSC",
 				description: "Using Suspense boundaries around Server Components",
 			},
 			{
 				slug: "/fetching/suspense-use",
-				name: "3a. Suspense + use",
+				name: "Suspense + use",
 				description: "Using React 19 use() with Suspense",
 			},
 		],
@@ -126,9 +126,12 @@ export default function RootLayout({
 						</div>
 					</SidebarHeader>
 					<SidebarContent>
-						<section className="flex w-full flex-col">
+						<section className="flex w-full flex-col leading-normal">
 							<nav className="flex flex-col gap-2 p-4">
-								<Link className="-mx-2 block rounded px-2 py-0.5" href="/">
+								<Link
+									className="-mx-2 block rounded px-2 py-0.5 no-underline"
+									href="/"
+								>
 									Home
 								</Link>
 								{navigation.map((row) => (
@@ -143,7 +146,7 @@ export default function RootLayout({
 											{row.items.map((item) => (
 												<li key={item.slug.toString()}>
 													<Link
-														className="-mx-2 block rounded px-2 py-0.5"
+														className="-mx-2 block rounded px-2 py-0.5 no-underline"
 														href={item.slug}
 													>
 														{item.name}

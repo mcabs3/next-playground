@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import DataComponent from "./_components/async-data-component";
 import DataLongerComponent from "./_components/async-data-longer-component";
 import Main from "../../_components/main";
-import TitledSection from "@/app/_components/titled-section";
 
 export const metadata: Metadata = {
 	title: "Suspense with React Server Components",
@@ -11,8 +10,8 @@ export const metadata: Metadata = {
 export default function Page() {
 	return (
 		<Main>
-			<h1>Static Header</h1>
-			<TitledSection title="Data" className="grid grid-cols-2 gap-8">
+			<h1>Header</h1>
+			<div className="grid grid-cols-2 gap-8">
 				<div>
 					<h3>Data</h3>
 					<DataComponent />
@@ -21,7 +20,7 @@ export default function Page() {
 					<h3>More Data</h3>
 					<DataLongerComponent />
 				</div>
-			</TitledSection>
+			</div>
 		</Main>
 	);
 }

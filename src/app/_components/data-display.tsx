@@ -9,7 +9,7 @@ export function DataDisplay({
 }) {
 	return (
 		<div>
-			{!!title && <h3>{title}</h3>}
+			{!!title && <h3 className="[&&]:mt-0">{title}</h3>}
 			<CodeBlock controls={false}>{`
 \`\`\`json
 ${JSON.stringify(data, null, 2)}

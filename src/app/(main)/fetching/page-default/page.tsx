@@ -81,8 +81,8 @@ export default async function Page() {
 
 				<ul className="list-disc space-y-2 pl-6">
 					<li>
-						<strong>Add loading.tsx</strong> - Provides immediate feedback with a
-						loading skeleton while the page fetches data.{" "}
+						<strong>Add loading.tsx</strong> - Provides immediate feedback with
+						a loading skeleton while the page fetches data.{" "}
 						<Link
 							href="/fetching/suspense-page"
 							className="underline hover:no-underline"
@@ -118,8 +118,8 @@ export default async function Page() {
 
 				<ul className="list-disc space-y-2 pl-6">
 					<li>
-						<strong>Simple pages with fast data</strong> - If your fetch is quick
-						(&lt;100ms), the blocking may be imperceptible.
+						<strong>Simple pages with fast data</strong> - If your fetch is
+						quick (&lt;100ms), the blocking may be imperceptible.
 					</li>
 					<li>
 						<strong>All content depends on the same data</strong> - If nothing
@@ -143,9 +143,9 @@ export default async function Page() {
 						sequentially when fetches are independent.
 					</li>
 					<li>
-						<strong>Consider moving fetches down</strong> - If parts of your page
-						could render without the data, fetch in those specific components
-						instead.
+						<strong>Consider moving fetches down</strong> - If parts of your
+						page could render without the data, fetch in those specific
+						components instead.
 					</li>
 					<li>
 						<strong>Avoid passing params through the page</strong> - Let child

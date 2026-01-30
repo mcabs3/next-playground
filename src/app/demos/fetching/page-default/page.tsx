@@ -14,11 +14,6 @@ export default async function Page(
 	const dataLonger = await getDataLonger();
 	return (
 		<Main>
-			<blockquote data-level="severe" className="w-full">
-				Did you notice the lag? This page is blocked from the data fetching
-				until all of the page data is fetched.
-			</blockquote>
-
 			<section className="grid grid-cols-2 gap-2 pb-8">
 				<DataDisplay title="Data" data={data} />
 				<DataDisplay title="Other Data" data={dataLonger} />
