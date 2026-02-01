@@ -11,7 +11,7 @@ export function Frame({ src, hint }: { src: string; hint?: string }) {
 			<Browser onRefresh={() => setReset((c) => c + 1)}>
 				<iframe
 					src={src}
-					className="m-0 h-full min-h-[300px] w-full"
+					className="m-0 h-full min-h-[400px] w-full"
 					title="test"
 				/>
 			</Browser>

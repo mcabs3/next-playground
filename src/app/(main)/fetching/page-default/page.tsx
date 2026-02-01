@@ -139,17 +139,18 @@ export default async function Page() {
 						blank screen while fetching.
 					</li>
 					<li>
-						<strong>Use Promise.all for parallel fetches</strong> - Don't await
-						sequentially when fetches are independent.
+						<strong>
+							Use <code>Promise.all</code> for parallel fetches
+						</strong>{" "}
+						- Don't await sequentially when fetches are independent.
 					</li>
 					<li>
-						<strong>Consider moving fetches down</strong> - If parts of your
-						page could render without the data, fetch in those specific
-						components instead.
+						<strong>Move fetches lower</strong> - If parts of your page could
+						render without the data, fetch in those specific components instead.
 					</li>
 					<li>
-						<strong>Avoid passing params through the page</strong> - Let child
-						components access their own params to enable better streaming.
+						<strong>Pass params (Promise) to child RSC</strong> - Let child
+						components access page params instead of awaiting in the Page.
 					</li>
 				</ul>
 			</PageContent>

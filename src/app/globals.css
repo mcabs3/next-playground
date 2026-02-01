@@ -182,6 +182,7 @@
 		@apply border-red-500 bg-red-500/10 text-red-700;
 	}
 
+	strong > code,
 	p code,
 	div > code {
 		@apply bg-muted text-accent mx-1 px-2 py-1 rounded-sm font-bold font-mono text-sm;

@@ -1,20 +1,39 @@
 import type { Metadata } from "next";
-import { DataDisplay } from "@/app/_components/data-display";
-import { getData, getDataLonger } from "@/lib/data";
+import { News, Stats, Weather } from "../../_components/api-components";
 import Main from "../../_components/main";
+import { api } from "../../_lib/api";
 
 export const metadata: Metadata = {
 	title: "Suspense with loading.tsx",
 };
 
 export default async function Page() {
-	const data = await getData();
-	const dataLonger = await getDataLonger();
+	const [weather, news, stats, profile] = await Promise.all([
+		api("weather"),
+		api("news"),
+		api("stats"),
+		api("profile"),
+	]);
+	const maxDelay = Math.max(
+		weather.delay,
+		news.delay,
+		stats.delay,
+		profile.delay,
+	);
+
 	return (
 		<Main>
-			<section className="grid grid-cols-2 gap-2">
-				<DataDisplay title="Data" data={data} />
-				<DataDisplay title="More Data" data={dataLonger} />
+			<blockquote data-level="info">
+				The total page load time is approximately {maxDelay}ms, which is the
+				longest individual API call delay.
+			</blockquote>
+			<section className="grid grid-cols-2 gap-8 pt-8">
+				<h1 className="pt-8 text-2xl">
+					Welcome, {profile.data.name} ({profile.delay}ms)
+				</h1>
+				<Weather {...weather} />
+				<Stats {...stats} />
+				<News {...news} />
 			</section>
 		</Main>
 	);

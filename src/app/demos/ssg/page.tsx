@@ -19,6 +19,7 @@ export default async function Page() {
 
 	return (
 		<Main>
+			<p>Timestamp: {new Date().toISOString()}</p>
 			<div className="space-y-6">
 				<header>
 					<h1 className="font-bold text-xl">Static Blog Posts</h1>

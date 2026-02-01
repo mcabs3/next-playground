@@ -17,16 +17,13 @@ async function getPosts(): Promise<Post[]> {
 
 export default async function Page() {
 	const posts = await getPosts();
-	const generatedAt = new Date().toLocaleString();
 
 	return (
 		<Main>
+			<p>Timestamp: {new Date().toISOString()}</p>
 			<div className="space-y-6">
 				<header>
 					<h1 className="font-bold text-xl">ISR Blog Posts</h1>
-					<p className="text-muted-foreground text-sm">
-						Generated at: <time>{generatedAt}</time>
-					</p>
 					<p className="mt-2 rounded bg-muted px-3 py-2 text-xs">
 						This page revalidates every <strong>10 seconds</strong>. Refresh
 						after 10s to see a new timestamp.
