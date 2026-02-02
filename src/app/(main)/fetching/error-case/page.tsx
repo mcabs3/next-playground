@@ -28,23 +28,23 @@ export default async function Page({
 				<h1>Error Handling</h1>
 
 				<p>
-					Data fetching can fail. Network issues, API errors, or invalid data can
-					all cause exceptions. Next.js provides <code>error.tsx</code> files to
-					catch and handle errors at any level of your route tree.
+					Data fetching can fail. Network issues, API errors, or invalid data
+					can all cause exceptions. Next.js provides <code>error.tsx</code>{" "}
+					files to catch and handle errors at any level of your route tree.
 				</p>
 
 				<blockquote data-level="warning">
-					<strong>Try it:</strong> Add <code>?error=1</code> to this page's URL to
-					trigger an error and see the error boundary in action.
+					<strong>Try it:</strong> Add <code>?error=1</code> to this page's URL
+					to trigger an error and see the error boundary in action.
 				</blockquote>
 
 				<h2>How error.tsx Works</h2>
 
 				<p>
 					When you create an <code>error.tsx</code> file in a route segment,
-					Next.js wraps that segment with a React Error Boundary. Any error thrown
-					in that segment (or its children) will be caught and the error component
-					rendered instead.
+					Next.js wraps that segment with a React Error Boundary. Any error
+					thrown in that segment (or its children) will be caught and the error
+					component rendered instead.
 				</p>
 
 				<CodeBlock className="my-6">
@@ -75,18 +75,19 @@ export default function Error({
 
 				<ul className="list-disc space-y-2 pl-6">
 					<li>
-						<strong>Client Components required</strong> - Error boundaries must be
-						Client Components because they use React's error boundary feature.
+						<strong>Client Components required</strong> - Error boundaries must
+						be Client Components because they use React's error boundary
+						feature.
 					</li>
 					<li>
-						<strong>Automatic recovery with reset()</strong> - The <code>reset</code>{" "}
-						function re-renders the segment, letting users retry after transient
-						errors.
+						<strong>Automatic recovery with reset()</strong> - The{" "}
+						<code>reset</code> function re-renders the segment, letting users
+						retry after transient errors.
 					</li>
 					<li>
-						<strong>Error digest for logging</strong> - Production errors include
-						a <code>digest</code> hash you can use to match client errors with
-						server logs.
+						<strong>Error digest for logging</strong> - Production errors
+						include a <code>digest</code> hash you can use to match client
+						errors with server logs.
 					</li>
 					<li>
 						<strong>Hierarchical boundaries</strong> - Errors bubble up to the
@@ -98,8 +99,8 @@ export default function Error({
 				<h2>Error Boundary Placement</h2>
 
 				<p>
-					Where you place error boundaries affects how much of the UI is replaced
-					when an error occurs:
+					Where you place error boundaries affects how much of the UI is
+					replaced when an error occurs:
 				</p>
 
 				<CodeBlock className="my-6">
@@ -158,8 +159,8 @@ export default function Page() {
 						messages. Log detailed errors server-side.
 					</li>
 					<li>
-						<strong>Provide recovery actions</strong> - Give users a way to retry
-						or navigate away from the error state.
+						<strong>Provide recovery actions</strong> - Give users a way to
+						retry or navigate away from the error state.
 					</li>
 					<li>
 						<strong>Isolate error boundaries</strong> - Don't let one failed
@@ -205,9 +206,9 @@ export default function GlobalError({
 				</CodeBlock>
 
 				<blockquote data-level="info">
-					<strong>Note:</strong> <code>global-error.tsx</code> replaces the entire
-					page including <code>&lt;html&gt;</code> and <code>&lt;body&gt;</code>,
-					so you must include those tags.
+					<strong>Note:</strong> <code>global-error.tsx</code> replaces the
+					entire page including <code>&lt;html&gt;</code> and{" "}
+					<code>&lt;body&gt;</code>, so you must include those tags.
 				</blockquote>
 			</PageContent>
 		</>

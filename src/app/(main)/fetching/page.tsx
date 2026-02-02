@@ -54,16 +54,28 @@ export default function Page() {
 				</p>
 
 				<div className="my-8 grid gap-4 sm:grid-cols-2">
-					<FetchingTile title="Page-Level Fetching" href="/fetching/page-default">
+					<FetchingTile
+						title="Page-Level Fetching"
+						href="/fetching/page-default"
+					>
 						Fetch all data at the page level. Simple but blocks the entire page.
 					</FetchingTile>
-					<FetchingTile title="Suspense + loading.tsx" href="/fetching/suspense-page">
+					<FetchingTile
+						title="Suspense + loading.tsx"
+						href="/fetching/suspense-page"
+					>
 						Add a loading skeleton while the page fetches data.
 					</FetchingTile>
-					<FetchingTile title="Suspense + Server Components" href="/fetching/suspense-rsc">
+					<FetchingTile
+						title="Suspense + Server Components"
+						href="/fetching/suspense-rsc"
+					>
 						Move fetching to child components for granular streaming.
 					</FetchingTile>
-					<FetchingTile title="Suspense + React.use()" href="/fetching/suspense-use">
+					<FetchingTile
+						title="Suspense + React.use()"
+						href="/fetching/suspense-use"
+					>
 						Start fetches early, unwrap in client components.
 					</FetchingTile>
 				</div>
@@ -91,9 +103,13 @@ flowchart TD
 						<thead>
 							<tr className="border-b">
 								<th className="py-3 pr-4 text-left font-semibold">Pattern</th>
-								<th className="px-2 py-3 text-left font-semibold">Loading UX</th>
+								<th className="px-2 py-3 text-left font-semibold">
+									Loading UX
+								</th>
 								<th className="px-2 py-3 text-left font-semibold">Streaming</th>
-								<th className="px-2 py-3 text-left font-semibold">Complexity</th>
+								<th className="px-2 py-3 text-left font-semibold">
+									Complexity
+								</th>
 							</tr>
 						</thead>
 						<tbody className="text-muted-foreground">
@@ -136,10 +152,10 @@ flowchart TD
 				<h2>The Streaming Advantage</h2>
 
 				<p>
-					React Server Components support <strong>streaming</strong>—sending HTML
-					to the browser as it becomes ready. This means static parts of your page
-					render immediately while dynamic parts "stream in" as their data
-					resolves.
+					React Server Components support <strong>streaming</strong>—sending
+					HTML to the browser as it becomes ready. This means static parts of
+					your page render immediately while dynamic parts "stream in" as their
+					data resolves.
 				</p>
 
 				<CodeBlock className="my-6">
@@ -169,12 +185,12 @@ flowchart TD
 					</li>
 					<li>
 						<strong>Push fetching down the tree</strong> - The lower in the
-						component tree you fetch, the more of your page can render statically
-						and immediately.
+						component tree you fetch, the more of your page can render
+						statically and immediately.
 					</li>
 					<li>
-						<strong>Use Suspense boundaries strategically</strong> - Wrap
-						async components with Suspense to define loading states and streaming
+						<strong>Use Suspense boundaries strategically</strong> - Wrap async
+						components with Suspense to define loading states and streaming
 						points.
 					</li>
 					<li>
@@ -197,9 +213,8 @@ flowchart TD
 				<h2>Error Handling</h2>
 
 				<p>
-					Data fetching can fail. Next.js provides{" "}
-					<code>error.tsx</code> files to catch and handle errors at any level
-					of your route tree.{" "}
+					Data fetching can fail. Next.js provides <code>error.tsx</code> files
+					to catch and handle errors at any level of your route tree.{" "}
 					<Link
 						href="/fetching/error-case"
 						className="underline hover:no-underline"
