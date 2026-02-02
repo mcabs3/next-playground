@@ -44,7 +44,10 @@ export async function api<T extends ApiDataType>(
 	await connection();
 	// generate a random delay between 150ms and 2000ms
 	const delay = Math.floor(Math.random() * (2000 - 750 + 1)) + 750;
-	return fetch(`https://${process.env.VERCEL_URL}/api/v1/${delay}/${type}`, {
-		cache: "no-cache",
-	}).then((res) => res.json());
+	return fetch(
+		`https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}/api/v1/${delay}/${type}`,
+		{
+			cache: "no-cache",
+		},
+	).then((res) => res.json());
 }
