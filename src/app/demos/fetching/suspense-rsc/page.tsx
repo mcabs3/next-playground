@@ -37,8 +37,8 @@ async function NewsRSC() {
 
 function GridSkeleton({ children }: { children: React.ReactNode }) {
 	return (
-		<div className="relative pt-8 bg-muted p-2 text-muted-foreground min-h-24">
-			<span className="z-[1] absolute inset-0  grid place-items-center">
+		<div className="relative min-h-24 bg-muted p-2 pt-8 text-muted-foreground">
+			<span className="absolute inset-0 z-[1] grid place-items-center">
 				{children}
 			</span>
 		</div>
