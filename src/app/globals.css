@@ -29,8 +29,8 @@
 	--color-ring: var(--ring);
 	--color-input: var(--input);
 	--color-destructive: var(--destructive);
-	--color-accent-foreground: var(--color-blue-300);
-	--color-accent: var(--color-blue-600);
+	--color-accent-foreground: var(--accent-foreground);
+	--color-accent: var(--accent);
 	--color-secondary-foreground: var(--secondary-foreground);
 	--color-secondary: var(--secondary);
 	--color-popover-foreground: var(--popover-foreground);
@@ -63,8 +63,8 @@
 	--popover-foreground: oklch(0.145 0 0);
 	--secondary: oklch(0.97 0 0);
 	--secondary-foreground: oklch(0.205 0 0);
-	--accent: oklch(0.7 0.1643 248.82);
-	--accent-foreground: oklch(1 0 248.82);
+	--accent: var(--color-blue-700);
+	--accent-foreground: var(--color-blue-100);
 	--destructive: oklch(0.577 0.245 27.325);
 	--input: oklch(0.922 0 0);
 	--ring: oklch(0.708 0 0);
@@ -163,7 +163,7 @@
 	}
 
 	blockquote {
-		@apply inline-block border-l-4 border-muted-foreground bg-muted text-muted-foreground px-6 py-6 my-4 text-sm;
+		@apply inline-block border-l-4 border-muted-foreground bg-muted text-muted-foreground px-6 py-6 my-4 text-sm w-full;
 	}
 
 	blockquote[data-level="info"] {

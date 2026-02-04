@@ -1,92 +1,107 @@
 # AGENTS.md - Next.js Concepts Project
 
-This document provides guidelines for AI coding agents working in this repository.
+Guidelines for AI coding agents working in this repository.
 
 ## Project Overview
 
-A Next.js 16 (canary) demonstration project showcasing rendering strategies, data fetching patterns, and caching mechanisms. Uses React 19, TypeScript, and Tailwind CSS v4.
+A Next.js 16 (canary) demonstration project showcasing rendering strategies, data fetching patterns, and caching mechanisms. Uses React 19, TypeScript, Tailwind CSS v4, and Biome for linting/formatting.
 
-## Build, Lint, and Development Commands
+## Commands
 
 ```bash
-# Development server (uses Turbopack)
+# Development (Turbopack)
 npm run dev
 
-# Production build
+# Production build & start
 npm run build
-
-# Start production server
 npm run start
 
-# Lint the codebase
-npm run lint
+# Linting (Biome)
+npm run lint          # Check for issues
+npm run lint:fix      # Auto-fix lint issues
+
+# Formatting (Biome)
+npm run format        # Format all files
+
+# Combined check (lint + format)
+npm run check         # Check all
+npm run check:fix     # Fix all issues
 ```
 
 ### Testing
 
-This project does not currently have a test suite configured. No test files exist.
+No test suite is currently configured.
 
 ## Project Structure
 
 ```
 src/
-├── app/                    # Next.js App Router pages and layouts
+├── app/                    # Next.js App Router
 │   ├── _components/        # Shared page components (private folder)
 │   ├── api/                # API routes
-│   ├── caching/            # Caching examples
-│   ├── fetching/           # Data fetching patterns
-│   └── rendering/          # SSG, SSR, ISR examples
+│   ├── (main)/             # Route group for main pages
+│   └── demos/              # Demo pages with iframe examples
 ├── components/
-│   └── ui/                 # Reusable UI components
-└── lib/                    # Utility functions and data fetching
+│   └── ui/                 # Reusable UI components (shadcn/ui style)
+├── hooks/                  # Custom React hooks
+└── lib/                    # Utilities and data fetching
 ```
 
-## Code Style Guidelines
+## Code Style
+
+### Formatting (Biome)
+
+- **Indentation**: Tabs (not spaces)
+- **Quotes**: Double quotes for strings
+- **Tailwind classes**: Must be sorted (enforced by `useSortedClasses` rule)
+- **Imports**: Auto-organized by Biome
 
 ### TypeScript
 
-- **Strict mode enabled** - All code must be fully typed
-- Use `interface` for object shapes, `type` for unions and aliases
-- Prefer explicit return types on exported functions
+- Strict mode enabled - all code must be fully typed
+- Use `interface` for object shapes, `type` for unions/aliases
+- Avoid `any` - use `unknown` with type guards
 - Use `as const` for immutable constant objects
-- Avoid `any` - use `unknown` with type guards when needed
 
 ```typescript
-// Good - explicit interface
+// Interface for object shapes
 interface Pokemon {
   name: string;
   sprites: { front_default: string };
 }
 
-// Good - type for unions
+// Type for unions
 type RenderSupportType = boolean | "partial";
+
+// Constants with as const
+export const NEXT_REFERENCES = {
+  DataFetching: { title: "...", href: "..." },
+} as const;
 ```
 
 ### Imports
 
-Order imports as follows (with blank lines between groups):
+Biome auto-organizes imports. General order:
 
-1. React and Next.js core (`react`, `next/*`)
-2. External dependencies (`clsx`, `lucide-react`, etc.)
-3. Internal absolute imports (`@/*`)
-4. Relative imports (`./`, `../`)
+1. React/Next.js core (`react`, `next/*`)
+2. External packages (`clsx`, `lucide-react`, etc.)
+3. Internal absolute (`@/*`)
+4. Relative (`./`, `../`)
 
 ```typescript
 import type { Metadata } from "next";
-import { Suspense } from "react";
 import Link from "next/link";
 
 import { clsx } from "clsx";
 
 import { cn } from "@/lib/utils";
-import { getPokemon } from "@/lib/pokemon";
 
 import { DataDisplay } from "./_components/data-display";
 ```
 
 ### Path Aliases
 
-Use the `@/*` alias for imports from `src/`:
+Always use `@/*` for imports from `src/`:
 
 ```typescript
 import { cn } from "@/lib/utils";           // Good
@@ -95,37 +110,36 @@ import { cn } from "../../../lib/utils";    // Avoid
 
 ### Components
 
-- Use function declarations for components (not arrow functions)
-- Use `ComponentPropsWithoutRef<"element">` for extending HTML props
+- Use function declarations (not arrow functions)
+- Use `React.ComponentProps<"element">` for extending HTML props
 - Destructure props with spread for passthrough
-- Place client directive at top of file when needed: `"use client"`
+- Place `"use client"` directive at top of file when needed
 
 ```typescript
-// Good - function declaration with prop types
-export function Button({
+function Button({
   className,
-  ...buttonProps
-}: ComponentPropsWithoutRef<"button">) {
+  ...props
+}: React.ComponentProps<"button">) {
   return (
-    <button className={cn("border px-4 py-2 rounded", className)} {...buttonProps}>
-      {buttonProps.children}
-    </button>
+    <button className={cn("px-4 py-2", className)} {...props} />
   );
 }
 ```
 
 ### Naming Conventions
 
-- **Files**: kebab-case (`pokemon-display.tsx`, `titled-section.tsx`)
-- **Components**: PascalCase (`PokemonDisplay`, `TitledSection`)
-- **Functions**: camelCase (`getPokemon`, `getRandomPokemonID`)
-- **Constants**: SCREAMING_SNAKE_CASE for config objects (`NEXT_REFERENCES`)
-- **Interfaces/Types**: PascalCase (`Pokemon`, `RenderSupportType`)
+| Type | Convention | Example |
+|------|------------|---------|
+| Files | kebab-case | `pokemon-display.tsx` |
+| Components | PascalCase | `PokemonDisplay` |
+| Functions | camelCase | `getPokemon` |
+| Constants | SCREAMING_SNAKE_CASE | `NEXT_REFERENCES` |
+| Interfaces/Types | PascalCase | `Pokemon` |
 
-### Styling with Tailwind CSS v4
+### Styling (Tailwind CSS v4)
 
-- Use the `cn()` utility from `@/lib/utils` to merge class names
-- Prefer Tailwind utility classes over custom CSS
+- Use `cn()` from `@/lib/utils` to merge class names
+- Prefer Tailwind utilities over custom CSS
 - Use CSS variables for theme colors (`--background`, `--foreground`)
 
 ```typescript
@@ -137,7 +151,7 @@ import { cn } from "@/lib/utils";
 ### Error Handling
 
 - Use try/catch for async operations
-- Return `null` for failed fetches rather than throwing (when appropriate)
+- Return `null` for failed fetches (when appropriate)
 - Use early returns for guard clauses
 
 ```typescript
@@ -146,60 +160,50 @@ export async function getPokemon(id: number) {
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
     return (await response.json()) as Pokemon;
   } catch (error) {
+    console.error(error);
     return null;
   }
 }
 ```
 
-### Next.js Patterns
+## Next.js Patterns
 
-#### Server Components (default)
+### Server Components (default)
 
 - Pages are Server Components by default
-- Use async/await directly in components for data fetching
-- Pass promises to client components via props for streaming
+- Use async/await directly for data fetching
+- Pass promises to client components for streaming
 
-#### Client Components
+### Client Components
 
-- Add `"use client"` directive at top of file
+- Add `"use client"` at top of file
 - Use React 19's `use()` hook to unwrap promises
-- Keep client components minimal - push logic to server
+- Keep client components minimal
 
-#### API Routes
+### API Routes
 
-- Use `NextRequest` type for request parameter
+- Use typed route context for params
 - Return `Response.json()` for JSON responses
 
 ```typescript
-import type { NextRequest } from "next/server";
-
-export async function GET(request: NextRequest) {
+export async function GET(
+  request: Request,
+  ctx: RouteContext<"/api/v1/[delay]/[type]">,
+) {
+  const { delay, type } = await ctx.params;
   return Response.json({ data: "value" });
 }
 ```
 
-#### Caching and Revalidation
+### Caching
 
 - Use `unstable_cache` for data caching with tags
-- Use `revalidateTag` in Server Actions for cache invalidation
-- Configure `revalidate` option for ISR pages
-
-### React 19 Features
-
-- Use `use()` hook to unwrap promises in client components
-- Leverage Server Actions with `"use server"` directive
-- Use `useId()` for generating unique IDs
-
-## Configuration Notes
-
-- **TypeScript**: Strict mode, ES2017 target, bundler module resolution
-- **Next.js**: Typed routes enabled, view transitions experimental
-- **Tailwind CSS v4**: Using `@tailwindcss/postcss` plugin
-- **Images**: Remote patterns configured for PokeAPI sprites
+- Use `revalidateTag` in Server Actions for invalidation
 
 ## Key Files
 
 - `src/lib/utils.ts` - `cn()` utility for Tailwind class merging
 - `src/lib/pokemon.ts` - Pokemon API fetching and caching
-- `src/lib/data.ts` - Generic data fetching utilities
 - `src/lib/links.ts` - Reference link constants
+- `biome.json` - Linting and formatting configuration
+- `next.config.ts` - Next.js configuration

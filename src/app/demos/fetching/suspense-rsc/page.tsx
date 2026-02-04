@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
+import TitledSection from "@/app/_components/titled-section";
 import { News, Stats, Weather } from "../../_components/api-components";
 import Main from "../../_components/main";
 import { api } from "../../_lib/api";
@@ -11,9 +12,11 @@ export const metadata: Metadata = {
 async function ProfileRSC() {
 	const profile = await api("profile");
 	return (
-		<h1 className="pt-8 text-2xl">
-			Welcome, {profile.data.name} ({profile.delay}ms)
-		</h1>
+		<TitledSection title={`Profile (${profile.delay}ms)`}>
+			<h1 className="pt-8 text-2xl">
+				Welcome, {profile.data.name} ({profile.delay}ms)
+			</h1>
+		</TitledSection>
 	);
 }
 

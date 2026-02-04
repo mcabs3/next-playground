@@ -1,3 +1,4 @@
+import TitledSection from "@/app/_components/titled-section";
 import type { NewsData, StatsData, WeatherData } from "../_lib/api";
 
 function formatNumber(num: number): string {
@@ -16,23 +17,24 @@ function Stat({ label, value }: { label: string; value: string | number }) {
 export function Stats({ data, delay }: StatsData) {
 	const { edge, origin, cacheHit } = data.stats;
 	return (
-		<section className="mb-8 rounded border bg-muted p-4 shadow">
-			<span className="mb-4 inline-block font-bold text-3xl">
-				Stats ({delay}ms)
-			</span>
-			<div className="mt-2 grid grid-cols-3 gap-4">
+		<TitledSection
+			className="mb-8 rounded border bg-muted p-4 shadow"
+			title={`Stats (${delay}ms)`}
+		>
+			<span className="mb-4 inline-block font-bold text-3xl"></span>
+			<div className="mt-2 grid grid-cols-1 gap-4">
 				<Stat label="Edge Requests" value={formatNumber(edge)} />
 				<Stat label="Origin Requests" value={formatNumber(origin)} />
 				<Stat label="Cache Hit Rate" value={cacheHit} />
 			</div>
-		</section>
+		</TitledSection>
 	);
 }
 
 export function News({ data, delay }: NewsData) {
 	return (
-		<section className="mb-8">
-			<span className="inline-block font-bold text-3xl">News ({delay}ms)</span>
+		<TitledSection className="mb-8" title={`News (${delay}ms)`}>
+			<span className="inline-block font-bold text-3xl">Articles</span>
 			<div className="mt-2 space-y-4">
 				{data.articles.map((article) => (
 					<div key={article.title} className="rounded-lg border p-4">
@@ -45,17 +47,20 @@ export function News({ data, delay }: NewsData) {
 					</div>
 				))}
 			</div>
-		</section>
+		</TitledSection>
 	);
 }
 
 export function Weather({ delay, data }: WeatherData) {
 	return (
-		<div className="mb-2 rounded bg-muted px-4 py-1 text-muted-foreground">
+		<TitledSection
+			className="mb-2 rounded bg-muted px-4 py-1 text-muted-foreground"
+			title={`Weather (${delay}ms)`}
+		>
 			<p>
 				it is <em>{data.temperature}</em> and <em>{data.condition}</em> in{" "}
-				<em>{data.city}</em> ({delay}ms)
+				<em>{data.city}</em>
 			</p>
-		</div>
+		</TitledSection>
 	);
 }

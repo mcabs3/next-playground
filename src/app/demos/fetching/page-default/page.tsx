@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { News, Stats, Weather } from "../../_components/api-components";
 import Main from "../../_components/main";
 import { api } from "../../_lib/api";
+import TitledSection from "@/app/_components/titled-section";
 
 export const metadata: Metadata = {
 	title: "Fetching on the Page with RSC",
@@ -29,9 +30,11 @@ export default async function Page(
 				longest individual API call delay.
 			</blockquote>
 			<section className="grid grid-cols-2 gap-8 pt-8">
-				<h1 className="pt-8 text-2xl">
-					Welcome, {profile.data.name} ({profile.delay}ms)
-				</h1>
+				<TitledSection title={`Profile (${profile.delay}ms)`}>
+					<h1 className="pt-8 text-2xl">
+						Welcome, {profile.data.name} ({profile.delay}ms)
+					</h1>
+				</TitledSection>
 				<Weather {...weather} />
 				<Stats {...stats} />
 				<News {...news} />
