@@ -1,3 +1,4 @@
+import { trace } from "@opentelemetry/api";
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import TitledSection from "@/app/_components/titled-section";
@@ -5,34 +6,68 @@ import { News, Stats, Weather } from "../../_components/api-components";
 import Main from "../../_components/main";
 import { api } from "../../_lib/api";
 
+const tracer = trace.getTracer("demos");
+
 export const metadata: Metadata = {
 	title: "Suspense with React Server Components",
 };
 
 async function ProfileRSC() {
-	const profile = await api("profile");
-	return (
-		<TitledSection title={`Profile (${profile.delay}ms)`}>
-			<h1 className="pt-8 text-2xl">
-				Welcome, {profile.data.name} ({profile.delay}ms)
-			</h1>
-		</TitledSection>
-	);
+	return tracer.startActiveSpan("rsc.profile", async (span) => {
+		try {
+			const profile = await api("profile");
+			span.setAttribute("rsc.component", "ProfileRSC");
+			span.setAttribute("rsc.delay_ms", profile.delay);
+			return (
+				<TitledSection title={`Profile (${profile.delay}ms)`}>
+					<h1 className="pt-8 text-2xl">
+						Welcome, {profile.data.name} ({profile.delay}ms)
+					</h1>
+				</TitledSection>
+			);
+		} finally {
+			span.end();
+		}
+	});
 }
 
 async function WeatherRSC() {
-	const weather = await api("weather");
-	return <Weather {...weather} />;
+	return tracer.startActiveSpan("rsc.weather", async (span) => {
+		try {
+			const weather = await api("weather");
+			span.setAttribute("rsc.component", "WeatherRSC");
+			span.setAttribute("rsc.delay_ms", weather.delay);
+			return <Weather {...weather} />;
+		} finally {
+			span.end();
+		}
+	});
 }
 
 async function StatsRSC() {
-	const stats = await api("stats");
-	return <Stats {...stats} />;
+	return tracer.startActiveSpan("rsc.stats", async (span) => {
+		try {
+			const stats = await api("stats");
+			span.setAttribute("rsc.component", "StatsRSC");
+			span.setAttribute("rsc.delay_ms", stats.delay);
+			return <Stats {...stats} />;
+		} finally {
+			span.end();
+		}
+	});
 }
 
 async function NewsRSC() {
-	const news = await api("news");
-	return <News {...news} />;
+	return tracer.startActiveSpan("rsc.news", async (span) => {
+		try {
+			const news = await api("news");
+			span.setAttribute("rsc.component", "NewsRSC");
+			span.setAttribute("rsc.delay_ms", news.delay);
+			return <News {...news} />;
+		} finally {
+			span.end();
+		}
+	});
 }
 
 function GridSkeleton({ children }: { children: React.ReactNode }) {

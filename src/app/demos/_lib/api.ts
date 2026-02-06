@@ -1,4 +1,7 @@
+import { trace } from "@opentelemetry/api";
 import { connection } from "next/server";
+
+const tracer = trace.getTracer("demos");
 
 type ApiDataType = "weather" | "news" | "stats" | "profile";
 
@@ -42,12 +45,28 @@ export async function api<T extends ApiDataType>(
 					: never
 > {
 	await connection();
-	// generate a random delay between 150ms and 2000ms
-	const delay = Math.floor(Math.random() * (2000 - 750 + 1)) + 750;
-	return fetch(
-		`https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}/api/v1/${delay}/${type}`,
-		{
-			cache: "no-cache",
-		},
-	).then((res) => res.json());
+	return tracer.startActiveSpan(`api.fetch.${type}`, async (span) => {
+		try {
+			// generate a random delay between 750ms and 2000ms
+			const delay = Math.floor(Math.random() * (2000 - 750 + 1)) + 750;
+			span.setAttribute("api.type", type);
+			span.setAttribute("api.delay_ms", delay);
+
+			const result = await fetch(
+				`https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}/api/v1/${delay}/${type}`,
+				{
+					cache: "no-cache",
+				},
+			).then((res) => res.json());
+
+			span.setAttribute("api.status", "success");
+			return result;
+		} catch (error) {
+			span.setAttribute("api.status", "error");
+			span.recordException(error as Error);
+			throw error;
+		} finally {
+			span.end();
+		}
+	});
 }
