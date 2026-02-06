@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next Concepts
+
+A demonstration app showcasing Next.js patterns for building performant web applications.
+
+## What's Inside
+
+This project covers core Next.js concepts through interactive examples:
+
+- **Rendering Strategies** - SSG, SSR, and ISR with real-world use cases
+- **Data Fetching** - Server Components, Suspense boundaries, and streaming patterns
+- **Caching** - Route segment caching, `unstable_cache`, and revalidation strategies
+- **Performance Patterns** - Optimized loading states, parallel data fetching, and static generation
+
+Each demo includes timestamps and visual indicators to help you understand when pages are rendered and how caching behaves.
+
+## Tech Stack
+
+- Next.js 16 (canary) with App Router
+- React 19
+- TypeScript
+- Tailwind CSS v4
+- Biome (linting/formatting)
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [https://localhost:3000](https://localhost:3000) to explore the demos.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+> **Note**: The dev server runs with HTTPS enabled (`--experimental-https`) to support iframe embedding for the demo previews.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Scripts
+
+```bash
+npm run dev       # Start dev server (Turbopack)
+npm run build     # Production build
+npm run start     # Start production server
+npm run check     # Lint and format check
+npm run check:fix # Auto-fix issues
+```
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [Next.js Documentation](https://nextjs.org/docs)
+- [App Router Guide](https://nextjs.org/docs/app)
+- [Data Fetching Patterns](https://nextjs.org/docs/app/building-your-application/data-fetching)
