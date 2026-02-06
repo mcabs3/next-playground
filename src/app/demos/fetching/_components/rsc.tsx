@@ -9,28 +9,36 @@ export async function RSC() {
 		<div className="p-4">
 			<h3>Request Information</h3>
 			<b>Header Keys</b>
-			<ul className="flex flex-wrap gap-2">
-				{keys.map((key) => (
-					<li
-						key={key}
-						className="rounded border border-neutral-600 px-2 py-1 text-sm"
-					>
-						{key}: {headers.get(key)}
-					</li>
-				))}
-			</ul>
+			{!keys.length && <p className="text-neutral-500 text-sm">No headers</p>}
+			{!!keys.length && (
+				<ul className="flex flex-wrap gap-2">
+					{keys.map((key) => (
+						<li
+							key={key}
+							className="rounded border border-neutral-600 px-2 py-1 text-sm"
+						>
+							{key}: {headers.get(key)}
+						</li>
+					))}
+				</ul>
+			)}
 
 			<b className="mt-4 block">Cookie Keys</b>
-			<ul className="flex flex-wrap gap-2">
-				{cooKeys.map((key) => (
-					<li
-						key={key}
-						className="rounded border border-neutral-600 px-2 text-sm"
-					>
-						{key}
-					</li>
-				))}
-			</ul>
+			{!cooKeys.length && (
+				<p className="text-neutral-500 text-sm">No cookies</p>
+			)}
+			{!!cooKeys.length && (
+				<ul className="flex flex-wrap gap-2">
+					{cooKeys.map((key) => (
+						<li
+							key={key}
+							className="rounded border border-neutral-600 px-2 text-sm"
+						>
+							{key}
+						</li>
+					))}
+				</ul>
+			)}
 		</div>
 	);
 }

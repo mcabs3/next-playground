@@ -55,34 +55,34 @@ const navigation: Array<{ title?: string; items: Array<Item> }> = [
 		items: [
 			{
 				slug: "/rendering",
-				name: "Overview",
-				description: "Rendering strategies in Next.js",
+				name: "Introduction",
+				description: "When does Next.js render your pages?",
 			},
 			{
 				slug: "/rendering/ssg",
 				name: "Static (SSG)",
-				description: "Static Site Generation",
+				description: "Pre-rendered at build time",
 			},
 			{
 				slug: "/rendering/ssr",
 				name: "Dynamic (SSR)",
-				description: "Server-side rendering",
+				description: "Rendered on every request",
 			},
 			{
 				slug: "/rendering/isr",
 				name: "ISR",
-				description: "Increment Static Regeneration",
+				description: "Static with background revalidation",
 			},
 			{
 				slug: "/rendering/isr/force-static",
-				name: "ISR (force-static)",
-				description: "Increment Static Regeneration",
+				name: "force-static",
+				description: "Override dynamic detection",
 			},
 			{
 				// biome-ignore lint/suspicious/noExplicitAny: for demo purposes
 				slug: "/rendering/isr/generate-static-params/1" as any,
-				name: "ISR (generateStaticParams)",
-				description: "Static Site Generation",
+				name: "generateStaticParams",
+				description: "Pre-render dynamic routes",
 			},
 		],
 	},

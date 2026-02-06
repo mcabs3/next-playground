@@ -8,7 +8,7 @@ import { Frame } from "@/components/frame";
 export const metadata: Metadata = {
 	title: "Static Site Generation (SSG)",
 	description:
-		"Learn about Static Site Generation in Next.js - how it works, when to use it, and best practices for building fast, SEO-friendly pages.",
+		"Learn about Static Site Generation in Next.js — the default rendering strategy that pre-renders pages at build time for the fastest possible performance.",
 };
 
 export default function Page() {
@@ -22,19 +22,39 @@ export default function Page() {
 			</PageHeader>
 
 			<PageContent>
+				<p className="text-muted-foreground text-sm">
+					Static (SSG) · Rendering
+				</p>
+
 				<h1>Static Site Generation (SSG)</h1>
 
 				<p>
-					Static Site Generation is the <strong>default</strong> rendering
-					strategy in Next.js. Pages are pre-rendered at build time, producing
-					HTML files that can be cached and served instantly from a CDN. Any
-					page without dynamic APIs or uncached data fetching is automatically
-					static.
+					This is where every Next.js page starts. Static Site Generation is the{" "}
+					<strong>default</strong> rendering strategy — you don't configure it,
+					you don't opt into it, it just happens. When you build your app,
+					Next.js pre-renders every page it can into HTML files that get cached
+					and served instantly from a CDN. No server processing per request. No
+					database queries at runtime. Just HTML.
+				</p>
+
+				<p>
+					Any page that doesn't use dynamic APIs (<code>cookies()</code>,{" "}
+					<code>headers()</code>, <code>searchParams</code>,{" "}
+					<code>connection()</code>) and doesn't have uncached data fetching is
+					automatically static. You get the fastest possible performance by
+					doing nothing special.
+				</p>
+
+				<h2>What Makes a Page Static</h2>
+
+				<p>
+					The simplest static page is just a component that returns JSX. No
+					async, no fetching, no dynamic APIs:
 				</p>
 
 				<CodeBlock className="my-6">
 					{`\`\`\`tsx
-// This page is automatically static
+// This page is automatically static — no config needed
 export default function AboutPage() {
   return <h1>About Us</h1>;
 }
@@ -42,12 +62,10 @@ export default function AboutPage() {
 `}
 				</CodeBlock>
 
-				<h2>Static Pages with Dynamic Data</h2>
-
 				<p>
-					Static pages can fetch data at build time. Use{" "}
-					<code>generateStaticParams</code> to pre-render pages with dynamic
-					route segments.
+					But static pages can also fetch data — as long as that data is
+					available at build time. Use <code>generateStaticParams</code> to
+					pre-render pages with dynamic route segments:
 				</p>
 
 				<CodeBlock className="my-6">
@@ -72,20 +90,20 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
 
 				<ul className="list-disc space-y-2 pl-6">
 					<li>
-						<strong>Fastest performance</strong> - Pre-built HTML served
-						directly from edge CDN with zero server processing
+						<strong>Fastest performance</strong> — Pre-built HTML served
+						directly from edge CDN with zero server processing.
 					</li>
 					<li>
-						<strong>Excellent SEO</strong> - Complete HTML available immediately
-						for search engine crawlers
+						<strong>Excellent SEO</strong> — Complete HTML available immediately
+						for search engine crawlers.
 					</li>
 					<li>
-						<strong>Lower costs</strong> - No server compute per request; scales
-						infinitely on CDN
+						<strong>Lower costs</strong> — No server compute per request; scales
+						infinitely on CDN.
 					</li>
 					<li>
-						<strong>High reliability</strong> - No runtime dependencies on
-						databases or APIs
+						<strong>High reliability</strong> — No runtime dependencies on
+						databases or APIs. Your pages work even if your backend goes down.
 					</li>
 				</ul>
 
@@ -93,32 +111,19 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
 
 				<ul className="list-disc space-y-2 pl-6">
 					<li>
-						<strong>Content can become stale</strong> - Updates require a new
-						build. Consider{" "}
+						<strong>Content can become stale</strong> — Updates require a new
+						build and deploy. Consider{" "}
 						<Link
 							href="/rendering/isr"
 							className="underline hover:no-underline"
 						>
 							ISR
 						</Link>{" "}
-						for periodic updates.
+						if your content changes periodically.
 					</li>
 					<li>
-						<strong>No personalization</strong> - Same HTML for all users.
-						Personalized content must load client-side.
-					</li>
-					<li>
-						<strong>Build time grows with pages</strong> - Large sites may need
-						on-demand generation for less popular pages.
-					</li>
-				</ul>
-
-				<blockquote data-level="warning">
-					<strong>Dynamic APIs opt out of static rendering</strong>
-					<p className="mt-2">
-						Using <code>cookies()</code>, <code>headers()</code>,{" "}
-						<code>searchParams</code>, or <code>connection()</code>{" "}
-						automatically switches to{" "}
+						<strong>No personalization</strong> — Same HTML for every user.
+						Personalized content must load client-side or use{" "}
 						<Link
 							href="/rendering/ssr"
 							className="underline hover:no-underline"
@@ -126,46 +131,60 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
 							SSR
 						</Link>
 						.
-					</p>
+					</li>
+					<li>
+						<strong>Build time grows with pages</strong> — Large sites may need{" "}
+						<code>generateStaticParams</code> to pre-render only popular pages
+						and let others generate on demand.
+					</li>
+				</ul>
+
+				<blockquote>
+					<strong>What Did We Learn</strong>
+					<ul className="mt-2 list-disc space-y-2 pl-6">
+						<li>
+							SSG is the <strong>default</strong> rendering strategy in Next.js
+							— you get it for free without any configuration.
+						</li>
+						<li>
+							Static pages have <strong>zero runtime cost</strong>. They're
+							pre-built HTML files served directly from CDN.
+						</li>
+						<li>
+							Content stays the same <strong>until you redeploy</strong>. If
+							that's too stale, look at{" "}
+							<Link
+								href="/rendering/isr"
+								className="underline hover:no-underline"
+							>
+								ISR
+							</Link>{" "}
+							for background revalidation.
+						</li>
+						<li>
+							Using dynamic APIs like <code>cookies()</code>,{" "}
+							<code>headers()</code>, <code>searchParams</code>, or{" "}
+							<code>connection()</code> automatically opts your page out of
+							static rendering and into{" "}
+							<Link
+								href="/rendering/ssr"
+								className="underline hover:no-underline"
+							>
+								SSR
+							</Link>
+							.
+						</li>
+					</ul>
 				</blockquote>
 
-				<h2>Best Practices</h2>
-
-				<ul className="list-disc space-y-2 pl-6">
-					<li>
-						<strong>Start static</strong> - Let Next.js default to static and
-						only add dynamic features when needed.
-					</li>
-					<li>
-						<strong>Pre-render strategically</strong> - Generate popular pages
-						at build time; let others render on-demand.
-					</li>
-					<li>
-						<strong>Hydrate with client data</strong> - Load personalized or
-						real-time data on the client after the static shell.
-					</li>
-					<li>
-						<strong>Use ISR for semi-dynamic content</strong> - Content updating
-						every few minutes or hours is a good fit for{" "}
-						<Link
-							href="/rendering/isr"
-							className="underline hover:no-underline"
-						>
-							Incremental Static Regeneration
-						</Link>
-						.
-					</li>
-				</ul>
-
-				<h2>Good Use Cases</h2>
-
-				<ul className="list-disc space-y-2 pl-6">
-					<li>Marketing and landing pages</li>
-					<li>Blog posts and documentation</li>
-					<li>Product catalogs and e-commerce listings</li>
-					<li>Portfolio and showcase sites</li>
-					<li>Help centers and FAQs</li>
-				</ul>
+				<div className="mt-10 flex justify-end border-t pt-6">
+					<Link
+						href="/rendering/ssr"
+						className="font-semibold underline hover:no-underline"
+					>
+						Dynamic (SSR) →
+					</Link>
+				</div>
 			</PageContent>
 		</>
 	);

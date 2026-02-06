@@ -28,6 +28,10 @@ export default async function Page() {
 	return (
 		<Main>
 			<p>Timestamp: {new Date().toISOString()}</p>
+			<blockquote>
+				No content from this page relies on request data (headers, cookies,
+				searchParams). Introducing request data would make this a dynamic route.
+			</blockquote>
 			<div className="space-y-6">
 				<header>
 					<h1 className="font-bold text-xl">ISR Blog Posts</h1>

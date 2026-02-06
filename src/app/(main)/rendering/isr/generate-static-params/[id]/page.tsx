@@ -28,13 +28,34 @@ export default async function Page({
 			</PageHeader>
 
 			<PageContent>
+				<p className="text-muted-foreground text-sm">
+					generateStaticParams · Rendering
+				</p>
+
 				<h1>generateStaticParams</h1>
 
 				<p>
-					The <code>generateStaticParams</code> function lets you pre-render
-					dynamic routes at build time. Instead of generating pages on-demand,
-					Next.js creates static HTML for each parameter combination you
-					specify, delivering instant page loads.
+					Dynamic routes like <code>/blog/[slug]</code> are powerful, but by
+					default Next.js generates them on-demand — each new slug triggers a
+					server render the first time it's visited. With{" "}
+					<code>generateStaticParams</code>, you can tell Next.js exactly which
+					parameter values exist so it pre-renders those pages at build time.
+					The result: instant page loads for every known route, served straight
+					from the CDN.
+				</p>
+
+				<p>
+					This is particularly valuable for content-heavy sites — blogs, docs,
+					product catalogs — where you know the full set of routes (or at least
+					the high-traffic ones) ahead of time.
+				</p>
+
+				<h2>Defining Static Params</h2>
+
+				<p>
+					Export an async <code>generateStaticParams</code> function that
+					returns an array of parameter objects. Next.js will call your page
+					component once for each entry at build time:
 				</p>
 
 				<CodeBlock className="my-6">
@@ -62,11 +83,12 @@ export default async function Page({
 `}
 				</CodeBlock>
 
-				<h2>Controlling Dynamic Params</h2>
+				<h2>Controlling Unknown Params</h2>
 
 				<p>
-					The <code>dynamicParams</code> export controls what happens when a
-					user visits a route that wasn't pre-generated:
+					What happens when someone visits a slug that wasn't in your{" "}
+					<code>generateStaticParams</code> list? The <code>dynamicParams</code>{" "}
+					export controls this:
 				</p>
 
 				<CodeBlock className="my-6">
@@ -80,24 +102,35 @@ export const dynamicParams = false;
 `}
 				</CodeBlock>
 
+				<p>
+					With <code>dynamicParams = true</code> (the default), unknown slugs
+					are generated on-demand and then cached — they behave like{" "}
+					<Link href="/rendering/isr" className="underline hover:no-underline">
+						ISR
+					</Link>{" "}
+					pages. With <code>dynamicParams = false</code>, any slug not in the
+					list returns a 404. Use <code>false</code> for closed sets where
+					invalid routes should never render.
+				</p>
+
 				<h2>Benefits</h2>
 
 				<ul className="list-disc space-y-2 pl-6">
 					<li>
-						<strong>Instant page loads</strong> - Pre-generated pages are served
-						directly from CDN with zero server processing
+						<strong>Instant page loads</strong> — Pre-generated pages are served
+						directly from the CDN with zero server processing
 					</li>
 					<li>
-						<strong>Reduced server load</strong> - Popular pages don't need
-						on-demand rendering
+						<strong>Reduced server load</strong> — Popular pages don't need
+						on-demand rendering, reducing compute costs
 					</li>
 					<li>
-						<strong>Predictable builds</strong> - Know exactly which pages exist
-						at deployment time
+						<strong>Predictable builds</strong> — Know exactly which pages will
+						exist at deployment time
 					</li>
 					<li>
-						<strong>Flexible fallback</strong> - Use <code>dynamicParams</code>{" "}
-						to control behavior for unknown routes
+						<strong>Flexible fallback</strong> — Use <code>dynamicParams</code>{" "}
+						to control whether unknown routes generate on-demand or return 404
 					</li>
 				</ul>
 
@@ -105,62 +138,70 @@ export const dynamicParams = false;
 
 				<ul className="list-disc space-y-2 pl-6">
 					<li>
-						<strong>Build time scales with params</strong> - Generating
-						thousands of pages increases build duration
+						<strong>Build time scales with params</strong> — Generating
+						thousands of pages increases build duration. Focus on high-traffic
+						pages and let the long tail generate on-demand.
 					</li>
 					<li>
-						<strong>Stale content</strong> - Pre-generated pages need{" "}
+						<strong>Stale content</strong> — Pre-generated pages need{" "}
 						<Link
 							href="/rendering/isr"
 							className="underline hover:no-underline"
 						>
 							ISR
 						</Link>{" "}
-						or redeployment to update
+						(via <code>revalidate</code>) or a redeploy to update
 					</li>
 					<li>
-						<strong>No request-time data</strong> - Like{" "}
+						<strong>No request-time data</strong> — Like{" "}
 						<Link
 							href="/rendering/ssg"
 							className="underline hover:no-underline"
 						>
 							SSG
 						</Link>
-						, you can't use cookies or headers
+						, these pages can't use cookies or headers
 					</li>
 				</ul>
 
-				<h2>Best Practices</h2>
+				<blockquote>
+					<strong>What Did We Learn</strong>
+					<ul className="mt-2 list-disc space-y-2 pl-6">
+						<li>
+							<code>generateStaticParams</code> pre-renders known dynamic routes
+							at build time, turning dynamic pages into instant-loading static
+							assets.
+						</li>
+						<li>
+							<code>dynamicParams</code> controls what happens with unknown
+							route parameters — set it to <code>true</code> for on-demand
+							generation or <code>false</code> for strict 404s.
+						</li>
+						<li>
+							Combine with <code>revalidate</code> to keep pre-generated pages
+							fresh without requiring a full rebuild.
+						</li>
+						<li>
+							Focus on high-traffic pages for pre-generation — let long-tail
+							content generate on-demand to keep build times manageable.
+						</li>
+					</ul>
+				</blockquote>
 
-				<ul className="list-disc space-y-2 pl-6">
-					<li>
-						<strong>Pre-generate popular content</strong> - Focus on
-						high-traffic pages; let long-tail content generate on-demand.
-					</li>
-					<li>
-						<strong>Combine with ISR</strong> - Add <code>revalidate</code> to
-						keep pre-generated pages fresh without rebuilding.
-					</li>
-					<li>
-						<strong>Use dynamicParams wisely</strong> - Set to{" "}
-						<code>false</code> for closed sets (like known product IDs) to
-						return 404 for invalid routes.
-					</li>
-					<li>
-						<strong>Fetch data efficiently</strong> - Batch API calls in{" "}
-						<code>generateStaticParams</code> to minimize build-time requests.
-					</li>
-				</ul>
-
-				<h2>Good Use Cases</h2>
-
-				<ul className="list-disc space-y-2 pl-6">
-					<li>Blog posts and documentation pages</li>
-					<li>Product detail pages for popular items</li>
-					<li>User profile pages for active users</li>
-					<li>Category and tag archive pages</li>
-					<li>Any route with a known, finite set of parameters</li>
-				</ul>
+				<div className="mt-10 flex justify-between border-t pt-6">
+					<Link
+						href="/rendering/isr/force-static"
+						className="text-muted-foreground underline hover:no-underline"
+					>
+						← force-static
+					</Link>
+					<Link
+						href="/rendering/isr/with-dynamic-api"
+						className="font-semibold underline hover:no-underline"
+					>
+						with-dynamic-api →
+					</Link>
+				</div>
 			</PageContent>
 		</>
 	);

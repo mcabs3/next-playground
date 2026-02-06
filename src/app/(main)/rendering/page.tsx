@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 export const metadata: Metadata = {
 	title: "Rendering Strategies in Next.js",
 	description:
-		"An overview of the different rendering strategies supported by Next.js including SSG, SSR, ISR, and PPR.",
+		"A guided tour of rendering strategies in Next.js — from static generation to server-side rendering to incremental static regeneration.",
 };
 
 function RenderingTile({
@@ -48,23 +48,42 @@ export default function Page() {
 				<h1>Rendering Strategies</h1>
 
 				<p>
-					Next.js supports multiple rendering strategies. Choose the right one
-					based on your content's requirements for freshness, personalization,
-					and performance.
+					Next.js decides <em>when</em> to render your page — at build time, on
+					every request, or somewhere in between. The strategy it picks (or the
+					one you choose) determines how fast users see content, how fresh that
+					content is, and how much your server works. This guide walks through
+					each approach so you know exactly when to reach for which.
 				</p>
 
-				<div className="my-8 grid gap-4 sm:grid-cols-2">
+				<blockquote>
+					<strong>What we're building toward</strong>
+					<p className="mt-2">
+						By the end of this guide, you'll understand the three core rendering
+						strategies — Static (SSG), Dynamic (SSR), and Incremental Static
+						Regeneration (ISR) — when Next.js picks each one automatically, and
+						how to opt in or out deliberately.
+					</p>
+				</blockquote>
+
+				<h2>The Strategies</h2>
+
+				<p>
+					Each strategy answers the same question differently:{" "}
+					<em>when should this page's HTML be generated?</em>
+				</p>
+
+				<div className="my-8 grid gap-4 sm:grid-cols-3">
 					<RenderingTile title="Static (SSG)" href="/rendering/ssg">
-						Pre-rendered at build time. Fastest performance.
+						The default. Pre-rendered at build time. Fastest performance, zero
+						runtime cost. Content stays the same until you redeploy.
 					</RenderingTile>
 					<RenderingTile title="Dynamic (SSR)" href="/rendering/ssr">
-						Rendered on each request. Always fresh.
+						Rendered on every request. Required when you need cookies, headers,
+						or search params. Always fresh, higher TTFB.
 					</RenderingTile>
 					<RenderingTile title="Incremental (ISR)" href="/rendering/isr">
-						Static with background revalidation.
-					</RenderingTile>
-					<RenderingTile title="Partial (PPR)" href="/rendering">
-						Static shell with dynamic holes.
+						The middle ground. Static pages that revalidate in the background —
+						either on a timer or on demand.
 					</RenderingTile>
 				</div>
 
@@ -85,6 +104,61 @@ flowchart TD
 \`\`\`
 `}
 				</CodeBlock>
+
+				<h2>Key Differences</h2>
+
+				<div className="my-6 overflow-x-auto">
+					<table className="w-full border-collapse text-sm">
+						<thead>
+							<tr className="border-b">
+								<th className="py-3 pr-4 text-left font-semibold">Feature</th>
+								<th className="px-2 py-3 text-left font-semibold">SSG</th>
+								<th className="px-2 py-3 text-left font-semibold">ISR</th>
+								<th className="px-2 py-3 text-left font-semibold">SSR</th>
+							</tr>
+						</thead>
+						<tbody className="text-muted-foreground">
+							<tr className="border-b">
+								<td className="py-3 pr-4 font-medium text-foreground">
+									When rendered
+								</td>
+								<td className="px-2 py-3">Build</td>
+								<td className="px-2 py-3">Build + Runtime</td>
+								<td className="px-2 py-3">Runtime</td>
+							</tr>
+							<tr className="border-b">
+								<td className="py-3 pr-4 font-medium text-foreground">
+									Content freshness
+								</td>
+								<td className="px-2 py-3">Until redeploy</td>
+								<td className="px-2 py-3">Configurable (Tags/Time)</td>
+								<td className="px-2 py-3">Fresh</td>
+							</tr>
+							<tr className="border-b">
+								<td className="py-3 pr-4 font-medium text-foreground">
+									Cookies/Headers
+								</td>
+								<td className="px-2 py-3">No</td>
+								<td className="px-2 py-3">No</td>
+								<td className="px-2 py-3">Yes</td>
+							</tr>
+							<tr className="border-b">
+								<td className="py-3 pr-4 font-medium text-foreground">TTFB</td>
+								<td className="px-2 py-3">Fastest</td>
+								<td className="px-2 py-3">Fast (cached)</td>
+								<td className="px-2 py-3">Normal</td>
+							</tr>
+							<tr>
+								<td className="py-3 pr-4 font-medium text-foreground">
+									Server cost
+								</td>
+								<td className="px-2 py-3">Minimal</td>
+								<td className="px-2 py-3">Low</td>
+								<td className="px-2 py-3">Normal</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 
 				<h2>Quick Reference</h2>
 
@@ -170,69 +244,65 @@ flowchart TD
 					</p>
 				</div>
 
-				<h2>Key Differences</h2>
+				<h2>Key Principles</h2>
 
-				<div className="my-6 overflow-x-auto">
-					<table className="w-full border-collapse text-sm">
-						<thead>
-							<tr className="border-b">
-								<th className="py-3 pr-4 text-left font-semibold">Feature</th>
-								<th className="px-2 py-3 text-left font-semibold">SSG</th>
-								<th className="px-2 py-3 text-left font-semibold">ISR</th>
-								<th className="px-2 py-3 text-left font-semibold">SSR</th>
-							</tr>
-						</thead>
-						<tbody className="text-muted-foreground">
-							<tr className="border-b">
-								<td className="py-3 pr-4 font-medium text-foreground">
-									When rendered
-								</td>
-								<td className="px-2 py-3">Build</td>
-								<td className="px-2 py-3">Build + Runtime</td>
-								<td className="px-2 py-3">Runtime</td>
-							</tr>
-							<tr className="border-b">
-								<td className="py-3 pr-4 font-medium text-foreground">
-									Content freshness
-								</td>
-								<td className="px-2 py-3">Until redeploy</td>
-								<td className="px-2 py-3">Configurable (Tags/Time)</td>
-								<td className="px-2 py-3">Fresh</td>
-							</tr>
-							<tr className="border-b">
-								<td className="py-3 pr-4 font-medium text-foreground">
-									Cookies/Headers
-								</td>
-								<td className="px-2 py-3">No</td>
-								<td className="px-2 py-3">No</td>
-								<td className="px-2 py-3">Yes</td>
-							</tr>
-							<tr className="border-b">
-								<td className="py-3 pr-4 font-medium text-foreground">TTFB</td>
-								<td className="px-2 py-3">Fastest</td>
-								<td className="px-2 py-3">Fast (cached)</td>
-								<td className="px-2 py-3">Normal</td>
-							</tr>
-							<tr>
-								<td className="py-3 pr-4 font-medium text-foreground">
-									Server cost
-								</td>
-								<td className="px-2 py-3">Minimal</td>
-								<td className="px-2 py-3">Low</td>
-								<td className="px-2 py-3">Normal</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
+				<ul className="list-disc space-y-2 pl-6">
+					<li>
+						<strong>Start static, add dynamism as needed</strong> — Next.js
+						defaults to static rendering. Only opt into SSR when you need
+						request-time data, or ISR when content updates periodically.
+					</li>
+					<li>
+						<strong>Dynamic APIs are the trigger</strong> — Using{" "}
+						<code>cookies()</code>, <code>headers()</code>,{" "}
+						<code>searchParams</code>, or <code>connection()</code>{" "}
+						automatically switches a page from static to dynamic.
+					</li>
+					<li>
+						<strong>ISR is not a compromise — it's a feature</strong> — Static
+						performance with configurable freshness. Use time-based revalidation
+						or trigger updates on demand with <code>revalidatePath()</code> and{" "}
+						<code>revalidateTag()</code>.
+					</li>
+					<li>
+						<strong>Performance is the default</strong> — The fastest rendering
+						strategy (SSG) is also the one Next.js picks when you do nothing
+						special. Slower strategies require explicit opt-in.
+					</li>
+				</ul>
 
 				<blockquote>
-					<strong>Start with static, add dynamism as needed</strong>
-					<p className="mt-2">
-						Next.js defaults to static rendering. Only opt into SSR when you
-						need request-time data, or ISR when content updates periodically.
-						This approach gives you the best performance by default.
-					</p>
+					<strong>What Did We Learn</strong>
+					<ul className="mt-2 list-disc space-y-2 pl-6">
+						<li>
+							Next.js supports three core rendering strategies: Static (SSG),
+							Dynamic (SSR), and Incremental Static Regeneration (ISR) — each
+							answering <em>when</em> HTML is generated.
+						</li>
+						<li>
+							<strong>SSG</strong> is the default and fastest — pages are built
+							once and served from CDN with zero runtime cost.
+						</li>
+						<li>
+							<strong>SSR</strong> renders on every request, giving you access
+							to cookies, headers, and search params at the cost of higher TTFB.
+						</li>
+						<li>
+							<strong>ISR</strong> bridges the gap — static performance with
+							background revalidation, either time-based or on demand.
+						</li>
+					</ul>
 				</blockquote>
+
+				<p className="mt-8">
+					Ready?{" "}
+					<Link
+						href="/rendering/ssg"
+						className="font-semibold underline hover:no-underline"
+					>
+						Start with Static (SSG) →
+					</Link>
+				</p>
 			</PageContent>
 		</>
 	);

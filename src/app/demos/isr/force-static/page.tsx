@@ -3,6 +3,7 @@ import { PokemonDisplay } from "@/app/_components/pokemon-display";
 import Main from "@/app/demos/_components/main";
 import { getCurrentTime } from "@/lib/data";
 import { getPokemon, getRandomPokemonID } from "@/lib/pokemon";
+import { RSC } from "../../fetching/_components/rsc";
 
 export const metadata: Metadata = {
 	title: "force-static Demo - Next.js by Example",
@@ -23,6 +24,7 @@ export default async function Page() {
 				<p>This page will revalidate every 10 seconds</p>
 				<i>Timestamp: {currentTime}</i>
 			</blockquote>
+			<RSC />
 			<p>
 				This page data fetches a random pokemon using https://pokeapi.co/api/v2.
 				By default, the fetch does not leverage any caching mechanics so this
