@@ -20,6 +20,7 @@ export async function getPokemon(id: number) {
 		const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`, {
 			// cache: "no-store",
 		});
+		if (!response.ok) return null;
 		const json = (await response.json()) as Pokemon;
 		return json;
 	} catch (error) {

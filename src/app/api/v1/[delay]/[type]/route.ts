@@ -24,7 +24,7 @@ export async function GET(
 				case "weather":
 					return Response.json({
 						type,
-						delay,
+						delay: delayMs,
 						data: {
 							city: "San Francisco",
 							temperature: "18°C",
@@ -34,7 +34,7 @@ export async function GET(
 				case "news":
 					return Response.json({
 						type,
-						delay,
+						delay: delayMs,
 						data: {
 							articles: [
 								{
@@ -58,7 +58,7 @@ export async function GET(
 				case "stats":
 					return Response.json({
 						type,
-						delay,
+						delay: delayMs,
 						data: {
 							stats: {
 								edge: 1_500_000,
@@ -70,14 +70,14 @@ export async function GET(
 				case "profile":
 					return Response.json({
 						type,
-						delay,
+						delay: delayMs,
 						data: {
 							name: "John Doe",
 							email: "test@example.com",
 						},
 					});
 				default:
-					return Response.json({ type, delay, data: {} });
+					return Response.json({ type, delay: delayMs, data: {} });
 			}
 		} finally {
 			span.end();

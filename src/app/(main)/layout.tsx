@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import type { ComponentProps } from "react";
 import {
@@ -7,16 +6,6 @@ import {
 	SidebarHeader,
 	SidebarProvider,
 } from "@/components/ui/sidebar";
-
-export const metadata: Metadata = {
-	title: {
-		template: "%s | Next.js by Example",
-		default: "Next.js by Example",
-	},
-
-	description:
-		"Learn Next.js patterns through interactive, step-by-step examples.",
-};
 
 interface Item {
 	name: string;

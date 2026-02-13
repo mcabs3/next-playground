@@ -52,8 +52,13 @@ export async function api<T extends ApiDataType>(
 			span.setAttribute("api.type", type);
 			span.setAttribute("api.delay_ms", delay);
 
+			const baseUrl =
+				process.env.VERCEL_PROJECT_PRODUCTION_URL ?? "localhost:3000";
+			const protocol = process.env.VERCEL_PROJECT_PRODUCTION_URL
+				? "https"
+				: "http";
 			const result = await fetch(
-				`https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}/api/v1/${delay}/${type}`,
+				`${protocol}://${baseUrl}/api/v1/${delay}/${type}`,
 				{
 					cache: "no-cache",
 				},

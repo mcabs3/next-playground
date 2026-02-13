@@ -1,6 +1,7 @@
 export async function getData(ms = 0) {
-	// biome-ignore lint/style/noNonNullAssertion: for demo purposes
-	return await fetch(`https://${process.env.VERCEL_URL!}/api/test?ms=${ms}`, {
+	const baseUrl = process.env.VERCEL_URL ?? "localhost:3000";
+	const protocol = process.env.VERCEL_URL ? "https" : "http";
+	return await fetch(`${protocol}://${baseUrl}/api/test?ms=${ms}`, {
 		cache: "no-store",
 	}).then((response) => response.json());
 }
