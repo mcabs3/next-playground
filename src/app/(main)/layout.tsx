@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { ComponentProps } from "react";
+import { ViewTransition } from "react";
 import {
 	Sidebar,
 	SidebarContent,
@@ -142,7 +143,9 @@ export default function RootLayout({
 					</section>
 				</SidebarContent>
 			</Sidebar>
-			<section className="w-full">{children}</section>
+			<section className="w-full">
+				<ViewTransition default="page-transition">{children}</ViewTransition>
+			</section>
 		</SidebarProvider>
 	);
 }

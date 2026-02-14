@@ -1,31 +1,31 @@
 "use client";
 import type { ReactNode } from "react";
 
-// a function that generates 3 numbers that add up to 10 with a minimum of 1
-function useGeneratedRow(rowCount: number) {
-	const results: number[][] = [];
-	for (let r = 0; r < rowCount; r++) {
-		let sum = 0;
-		const numbers = [];
-		for (let i = 0; i < 2; i++) {
-			const num = Math.floor(Math.random() * (10 - sum - (3 - i))) + 1;
-			numbers.push(num);
-			sum += num;
-		}
-		numbers.push(10 - sum);
-		results.push(numbers);
-	}
-	return results;
+/**
+ * Deterministic row patterns for the skeleton grid.
+ * Each sub-array contains 3 numbers that sum to 10 (column spans in a 10-col grid).
+ */
+const ROW_PATTERNS = [
+	[3, 4, 3],
+	[5, 2, 3],
+	[2, 5, 3],
+	[4, 3, 3],
+	[2, 4, 4],
+	[6, 2, 2],
+];
+
+function getRowPattern(index: number): number[] {
+	return ROW_PATTERNS[index % ROW_PATTERNS.length];
 }
 
-export const LoadingSkeleton = ({
+export function LoadingSkeleton({
 	children,
 	rows = 3,
 }: {
-	children?: ReactNode | ReactNode[];
+	children?: ReactNode;
 	rows?: number;
-}) => {
-	const rowContent = useGeneratedRow(rows);
+}) {
+	const rowContent = Array.from({ length: rows }, (_, i) => getRowPattern(i));
 
 	return (
 		<div className="relative grid place-items-center rounded border-2 border-gray-500 border-dashed p-8">
@@ -36,15 +36,15 @@ export const LoadingSkeleton = ({
 			)}
 			<div className="grid w-full grid-cols-10 gap-2 [&>div]:rounded-lg">
 				{rowContent.map((rowData, i) =>
-					rowData.map((row, j) => (
+					rowData.map((span, j) => (
 						<div
-							key={`${i}-${j}-${row}`}
+							key={`row${i}-col${j}-span${span}`}
 							className="h-8 animate-pulse bg-white/10"
-							style={{ gridColumn: `span ${row} / span ${row}` }}
+							style={{ gridColumn: `span ${span} / span ${span}` }}
 						/>
 					)),
 				)}
 			</div>
 		</div>
 	);
-};
+}

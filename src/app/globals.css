@@ -201,3 +201,114 @@
 		@apply bg-transparent p-0 m-0 rounded-none text-base font-normal;
 	}
 }
+
+/* ── View Transition Animations ────────────────────────────────── */
+
+/*
+ * page-transition: default cross-fade for the overall page content area.
+ * Used on the (main) layout wrapper.
+ */
+::view-transition-old(.page-transition) {
+	animation: vt-fade-out 200ms ease-out both;
+}
+::view-transition-new(.page-transition) {
+	animation: vt-fade-in 250ms ease-in 50ms both;
+}
+
+/*
+ * slide-in-from-top: header slides down into view on enter.
+ */
+::view-transition-old(.slide-in-from-top) {
+	animation: vt-slide-out-up 200ms ease-out both;
+}
+::view-transition-new(.slide-in-from-top) {
+	animation: vt-slide-in-down 300ms ease-out both;
+}
+
+/*
+ * slide-in-from-bottom: main content slides up into view on enter.
+ */
+::view-transition-old(.slide-in-from-bottom) {
+	animation: vt-fade-out 200ms ease-out both;
+}
+::view-transition-new(.slide-in-from-bottom) {
+	animation: vt-slide-in-up 300ms ease-out 50ms both;
+}
+
+/*
+ * crossfade: simple, quick cross-fade for in-place updates.
+ */
+::view-transition-old(.crossfade) {
+	animation: vt-fade-out 150ms ease-out both;
+}
+::view-transition-new(.crossfade) {
+	animation: vt-fade-in 200ms ease-in both;
+}
+
+/* ── Keyframes ─────────────────────────────────────────────────── */
+
+@keyframes vt-fade-in {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes vt-fade-out {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
+}
+
+@keyframes vt-slide-in-up {
+	from {
+		opacity: 0;
+		transform: translateY(12px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes vt-slide-in-down {
+	from {
+		opacity: 0;
+		transform: translateY(-8px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes vt-slide-out-up {
+	from {
+		opacity: 1;
+		transform: translateY(0);
+	}
+	to {
+		opacity: 0;
+		transform: translateY(-8px);
+	}
+}
+
+/* ── Accessibility: respect reduced motion ─────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+	::view-transition-old(.page-transition),
+	::view-transition-new(.page-transition),
+	::view-transition-old(.slide-in-from-top),
+	::view-transition-new(.slide-in-from-top),
+	::view-transition-old(.slide-in-from-bottom),
+	::view-transition-new(.slide-in-from-bottom),
+	::view-transition-old(.crossfade),
+	::view-transition-new(.crossfade) {
+		animation: none;
+	}
+}
